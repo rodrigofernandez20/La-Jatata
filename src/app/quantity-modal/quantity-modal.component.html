@@ -1,0 +1,36 @@
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
+</head>
+
+<body>
+    <h1  mat-dialog-title>Seleccionar Cantidad</h1>
+    <h3  mat-dialog-title>{{product}}</h3>
+    <!--<div class="input-group plus-minus-input">
+        <div class="input-group-button">
+          <button type="button" class="button hollow circle" data-quantity="minus" data-field="quantity">
+            <i class="fa fa-minus" aria-hidden="true"></i>
+          </button>
+        </div>
+        <input class="input-group-field" type="number" name="quantity" value="0">
+        <div class="input-group-button">
+          <button type="button" class="button hollow circle" data-quantity="plus" data-field="quantity">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+          </button>
+        </div>
+    </div>-->
+    <div class="plus-minus-container">
+        <button type="button" (click)="minus()">
+            <i class="material-icons">remove</i>
+        </button>
+        <input type="text" [value]="quantity" class="quantity-input" size="3" name="cant" (change)="valuechange($event)">
+        <button type="button" (click)="plus()">
+            <i class="material-icons">add</i>
+        </button>
+    </div>
+    <div class="buttons-container">
+        <mat-dialog-actions>
+            <button  mat-raised-button (click)="closePopUp()" >Cerrar</button>
+            <button  mat-raised-button (click)="confirmClicked()">Confirmar</button>
+        </mat-dialog-actions>
+    </div>
+</body>

@@ -1,0 +1,14 @@
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
+</head>
+<!--Reutilizar esto enviando los mensajes -->
+<body>
+    <h1  mat-dialog-title>Confirmación</h1>
+    <h3  mat-dialog-title>¿Está seguro que desea borrar {{product}}?</h3>
+    <div class="buttons-container">
+        <mat-dialog-actions>
+            <button  mat-raised-button (click)="closePopUp()" >Cerrar</button>
+            <button  mat-raised-button (click)="confirmClicked()">Confirmar</button>
+        </mat-dialog-actions>
+    </div>
+</body>

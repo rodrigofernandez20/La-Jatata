@@ -1,0 +1,91 @@
+<html>
+    <head>
+      <base target="_top">
+      <title>La Jatata</title>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--Borrar-->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    </head>
+    <body>
+      <div class="topnav">
+        <h1 class="date-picker"> Familia</h1>
+        <a class="split">Guardar</a>
+      </div>
+      
+      <div class="container">
+        <!--<div class="flex-item"> 1</div>-->
+        <section class="flex-item">
+          <article class="receipt flex-column">
+              <div class="restaurant-header">
+                  <p class="receipt-headers">La Jatata</p>
+                  <p class="receipt-headers">4 Esquinas</p>
+                  <p class="receipt-headers">Cochabamba, Cbba</p>
+                  <p class="receipt-headers">70772977</p>
+                  <p class="receipt-headers"></p>
+              </div>
+          </article>
+          <div class="receipt-details">
+            <table class="receipt-table">
+                <thead>
+                  <tr>
+                      <td class="dotted-border" colspan="6"></td>
+                  </tr>
+                  <tr>
+                      <th class="table-header">Producto</th>
+                      <th class="table-header">Reservado</th>
+                      <th class="table-header">SubTotal</th>
+                      <th class="table-header">Editar</th>
+                      <th class="table-header">Borrar</th>
+                  </tr>
+                  <tr>
+                      <td class="dotted-border" colspan="6 "></td>
+                  </tr>   
+                </thead>
+                <tbody>
+                  <tr *ngFor="let or of order">
+                    <td>{{ or.name }}</td>
+                    <td>{{ or.quantity }}</td>
+                    <td>{{ or.subtotal }}</td>
+                    <td><span class="material-symbols-outlined grow">edit</span></td>
+                    <td><span class="material-symbols-outlined grow">delete</span></td>
+                  </tr>
+                </tbody>
+            </table>
+          </div>
+          <div class="receipt-summary">
+            <table class="summary-table">
+                <tbody class="summary-table" id="total-summary">
+                    <tr>
+                        <td class="dotted-border" colspan="5"></td>
+                    </tr>
+                    <tr>
+                        <td class="empty-border" colspan="5"></td>
+                    </tr>
+                </tbody>  
+            </table>
+        </div>
+        </section>  
+  
+        <div id="menu-container" class="flex-item">  
+          <p>Hola mundo</p>
+        </div>
+        </div>
+
+      <!--<ul *ngFor="let pro of products">
+        <li>
+          {{pro.name}}
+        </li>
+      </ul>-->
+    </body>
+  </html>
+  
+  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+  <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+  <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+  <!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+  <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+  <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+  
+  <router-outlet></router-outlet>
+  
