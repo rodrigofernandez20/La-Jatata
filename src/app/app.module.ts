@@ -16,6 +16,10 @@ import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {ComandasComponent } from './comandas/comandas.component';
 import { RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+//import { FormReservaComponent } from './form-reserva/form-reserva.component';
+import { ReservaModalComponent } from './reserva-modal/reserva-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +27,9 @@ import { RouterModule } from '@angular/router';
     ReservasComponent,
     QuantityModalComponent,
     ConfirmModalComponent,
-    routingComponents
+    routingComponents,
+    HomeComponent,
+    ReservaModalComponent
   ],
   imports: [
     BrowserModule,

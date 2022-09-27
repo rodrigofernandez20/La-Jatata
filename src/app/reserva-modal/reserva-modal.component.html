@@ -1,0 +1,48 @@
+<div class="container">
+    <div [hidden]="submitted">
+      <h1>Hero Form</h1>
+      <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+        <div class="form-group">
+          <label for="name">Nombre de Reserva</label>
+          <input type="text" class="form-control" id="name"
+                 required>
+          <!--<div [hidden]="name.valid || name.pristine"
+               class="alert alert-danger">
+            Name is required
+          </div>-->
+        </div>
+  
+        <div class="form-group">
+          <label for="alterEgo">Cantidad de Personas</label>
+          <input type="text" class="form-control" id="alterEgo">
+        </div>
+
+        <div class="form-group">
+          <label for="alterEgo">Fecha</label>
+          <input type="date" class="form-control" id="alterEgo">
+        </div>
+  
+        <div class="form-group">
+          <label for="power">Lugar</label>
+          <select class="form-control" id="power">
+            <option *ngFor="let zone of zones" [value]="zone">{{zone}}</option>
+          </select>
+          <!--<div [hidden]="power.valid || power.pristine" class="alert alert-danger">
+            Power is required
+          </div>-->
+        </div>
+
+  
+        <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Guardar</button>
+        <button type="button" class="btn btn-default" >Reservar Platos</button>
+        
+       <!-- NOT SHOWN IN DOCS -->
+       <div class="form-group">
+        <label for="alterEgo">Notas</label>
+        <input type="text" class="form-control" id="alterEgo">
+      </div>
+       <!-- - -->
+      </form>
+    </div>
+  
+    
