@@ -1,6 +1,6 @@
 <div class="container">
     <div [hidden]="submitted">
-      <h1>Hero Form</h1>
+      <h1>Nueva Reserva</h1>
       <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
         <div class="form-group">
           <label for="name">Nombre de Reserva</label>
@@ -13,33 +13,33 @@
         </div>
   
         <div class="form-group">
-          <label for="alterEgo">Cantidad de Personas</label>
+          <label for="cantidad-personas">Cantidad de Personas</label>
           <input type="text" class="form-control" id="alterEgo">
         </div>
-
-        <div class="form-group">
-          <label for="alterEgo">Fecha</label>
-          <input type="date" class="form-control" id="alterEgo">
+        <div class="fechaylugar"> 
+          <div class="form-group date">
+            <label for="fecha">Fecha</label><br>
+            <input type="date" class="form-control" id="alterEgo">
+          </div>
+    
+          <div class="form-group place">
+            <label for="lugar">Lugar</label><br>
+            <select class="form-lugar" id="lugar">
+              <option *ngFor="let zone of zones" [value]="zone">{{zone}}</option>
+            </select>
+            <!--<div [hidden]="power.valid || power.pristine" class="alert alert-danger">
+              Power is required
+            </div>-->
+          </div>
         </div>
   
-        <div class="form-group">
-          <label for="power">Lugar</label>
-          <select class="form-control" id="power">
-            <option *ngFor="let zone of zones" [value]="zone">{{zone}}</option>
-          </select>
-          <!--<div [hidden]="power.valid || power.pristine" class="alert alert-danger">
-            Power is required
-          </div>-->
-        </div>
-
-  
-        <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Guardar</button>
-        <button type="button" class="btn btn-default" >Reservar Platos</button>
+        <button type="submit" class="guardar" [disabled]="!heroForm.form.valid">Guardar</button>
+        <button type="button" class="reservar" >Reservar Platos</button>
         
        <!-- NOT SHOWN IN DOCS -->
-       <div class="form-group">
-        <label for="alterEgo">Notas</label>
-        <input type="text" class="form-control" id="alterEgo">
+       <div class="notas">
+        <label for="notas">Notas</label>
+        <input type="text" class="notas-input" id="alterEgo">
       </div>
        <!-- - -->
       </form>

@@ -1,9 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,200&display=swap');
+
 * {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Nunito;
   }
   h1 {
-    color: #264D73;
+    color: #fafcff;
     font-size: 2.5rem;
+    font-family: Nunito;
+    border-bottom: 1px solid rgb(225, 225, 225);
+    padding-bottom: 5px;
+    
   }
   h2, h3 {
     color: #444;
@@ -24,23 +32,44 @@
   }
   body, input[text] {
     color: #333;
-    font-family: Cambria, Georgia, serif;
+    font-family: Nunito;
   }
   a {
     cursor: pointer;
   }
-  button {
-    background-color: #eee;
-    border: none;
+  .guardar {
+    background-color: #06b265be;
+    border:#eee;
+    border-style: double;
+    border-width: 5px;
     border-radius: 4px;
     cursor: pointer;
-    color: black;
+    color: #eee;
+    font-weight: bold;
     font-size: 1.2rem;
     padding: 1rem;
     margin-right: 1rem;
     margin-bottom: 1rem;
     margin-top: 1rem;
+    
   }
+  .reservar {
+    background-color: #06b265be;
+    border: #eee;
+    border-style: double;
+    border-width: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #eee;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    
+  }
+
   button:hover {
     background-color: black;
     color: white;
@@ -71,18 +100,49 @@
     background-color: black;
     color: white;
   }
-  hr {
-    margin: 1.5rem 0;
-  }
+ .form-lugar {
+  width: 200px;
+  height: 200px;
+  font-size: 30px;
+  color: #42545C;
+ }
   input[type="text"] {
     box-sizing: border-box;
     width: 100%;
     padding: .5rem;
   }
+  .fechaylugar {
+    display: flex;
+  }
   
+  .date {
+    margin-right: 4rem;
+  }
+
+  .notas {
+    font-size: 2rem;
+    font-family: 'Nunito', sans-serif;
+    border-top: 1px solid rgb(225, 225, 225);
+    padding-top: 10px;
+    
+  }
+ 
+  .notas-input {
+    margin-top: 10px;
+    
+  }
   
   /*
   Copyright Google LLC. All Rights Reserved.
   Use of this source code is governed by an MIT-style license that
   can be found in the LICENSE file at https://angular.io/license
   */
+
+
+
+
+
+
+
+
+  
