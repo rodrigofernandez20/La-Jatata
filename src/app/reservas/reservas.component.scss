@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,200&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
 
 
 .topnav {
@@ -18,7 +18,7 @@
     text-decoration: none;
     font-size: 17px;
     background-color: #04AA6D;
-    font-family: Nunito;
+    font-family: Aboreto;
   }
   .categories {
     background-color: #333;
@@ -26,8 +26,15 @@
     display: flex;
     height: fit-content;
     width: 100%;
-    font-family: Nunito;
+    font-family: Aboreto;
   }
+  .table-header {
+    font-family: 'Roboto Serif', serif;;  
+    
+  }
+  
+ 
+
   .categories a {
     flex: 1 1 0px;
     float: left;
@@ -36,7 +43,7 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-    font-family: Nunito;
+    font-family: Aboreto;
   }
   .categories a:hover, .topnav a:hover {
     background-color: #ddd;
@@ -54,6 +61,7 @@
     border: none;
     margin: auto;
     display: block;
+    font-family: Aboreto;
   }
   .container, #menu-container{
     display: flex;
@@ -63,22 +71,36 @@
     height: fit-content;
     background-color: #39eaa9e0;
     align-items: stretch;
+    
+    
   }
   .flex-item{
     flex:60px;
     border: black solid;
   }
   .menu-item{
+    
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
     border: black solid;
     border-width: 50%;
     margin: 1%;
     border-radius: 12px;
-    background-color: #e6e6e6;
-    height:45px;
-    padding: 0px 5px;
-    width: fit-content;
-    line-height: 45px;
+    background-color: #dfdfdf;
+    height: fit-content;
+    min-height: 65px;
+    padding: 0px 50px;
+    width: 4rem;
+    line-height: 17px;
+    font-family: Nunito;
+    align-content: center;
+    text-align: center;
+    text-align-last: center;
+    
+    
   }
+
   .receipt-headers{
     font-family: 'Roboto Serif', serif;
     font-weight: bold;
@@ -104,6 +126,7 @@
     display: flex;
     flex-direction: column;
     margin-top:auto;
+    font-family: 'Roboto Serif', serif;
   }
   .summary-table{
     align-items: end;
@@ -135,4 +158,4 @@ tbody.summary-table td:nth-child(3) {
     width: 25px;
 }*/
   
-//align to grid?
+//size r
