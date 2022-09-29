@@ -6,7 +6,7 @@ import { ReservasComponent } from './reservas/reservas.component';
 
 const routes: Routes = [
   {path: '',
-  redirectTo: 'reservas',
+  redirectTo: 'home',
   pathMatch: 'full'},
   { path: 'comandas', component: ComandasComponent },
   {path:'reservas',component:ReservasComponent},
