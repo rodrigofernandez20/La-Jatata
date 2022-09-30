@@ -7,17 +7,19 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./confirm-modal.component.scss']
 })
 export class ConfirmModalComponent implements OnInit {
-  product: string ="";
+  message: string ="";
   
   constructor(private  dialogRef:  MatDialogRef<ConfirmModalComponent>, @Inject(MAT_DIALOG_DATA) public  data:  any) {
-    this.product = data.message.name;
+    this.message = data.message;
    }
 
   ngOnInit(): void {
   }
+
   closePopUp() {
     this.dialogRef.close(false);
   }
+
   confirmClicked(){
    // this.onAdd.emit(this.quantity);
     this.dialogRef.close(true);

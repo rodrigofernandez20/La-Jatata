@@ -10,7 +10,7 @@
       <div class="topnav">
         <h1 class="date-picker"> Familia</h1>
         <a class="split">Guardar</a>
-      </div>
+      </div> 
       
       <div class="container">
         <!--<div class="flex-item"> 1</div>-->
@@ -43,9 +43,9 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let or of order">
-                    <td>{{ or.name }}</td>
+                    <td>{{ or.product_name }}</td>
                     <td>{{ or.quantity }}</td>
-                    <td>{{ or.subtotal }}</td>
+                    <td>{{ or.total }}</td>
                     <td><span class="material-symbols-outlined grow">edit</span></td>
                     <td><span class="material-symbols-outlined grow">delete</span></td>
                   </tr>

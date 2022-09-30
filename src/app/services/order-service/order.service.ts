@@ -12,9 +12,9 @@ export class OrderService {
   constructor() { }
   public getOrder(): Order[] {
     return this.order;
-}
+  }
 
-public setOrder(order: any): void {
-    this.order = order;
-}
-}
+  public setOrder(order: any): void {
+      this.order = order;
+    }
+} 

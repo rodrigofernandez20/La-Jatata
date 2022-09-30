@@ -1,6 +1,7 @@
 export interface Order {
-  id?: number;
-  name?: string;
+  product_id?: number;
+  product_name?: string;
+  price?: number;
   quantity?: number;
-  subtotal?: number;
+  total?: number;
 }

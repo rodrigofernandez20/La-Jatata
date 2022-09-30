@@ -11,15 +11,29 @@ import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDialogModule } from '@angular/material/dialog';
 import { QuantityModalComponent } from './quantity-modal/quantity-modal.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {ComandasComponent } from './comandas/comandas.component';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import {MatDividerModule} from '@angular/material/divider';
 //import { FormReservaComponent } from './form-reserva/form-reserva.component';
 import { ReservaModalComponent } from './reserva-modal/reserva-modal.component';
+import { AllreservasComponent } from './allreservas/allreservas.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
 
+import { CommonModule } from '@angular/common';
+
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatRadioModule } from '@angular/material/radio';
+//import { NgMaterialModule } from './ng-material/ng-material.module';
 
 @NgModule({
   declarations: [
@@ -29,15 +43,17 @@ import { ReservaModalComponent } from './reserva-modal/reserva-modal.component';
     ConfirmModalComponent,
     routingComponents,
     HomeComponent,
-    ReservaModalComponent
+    ReservaModalComponent,
+    AllreservasComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     RouterModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatDialogModule, MatInputModule, MatButtonModule, MatCardModule, MatFormFieldModule,FormsModule,MatSnackBarModule
+    MatDialogModule,CommonModule,MatSortModule,MatTableModule,MatRadioModule,MatIconModule,MatSelectModule,MatNativeDateModule, MatInputModule,MatDatepickerModule, MatButtonModule,CdkAccordionModule,MatExpansionModule, MatCardModule, MatFormFieldModule,FormsModule,MatSnackBarModule,MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

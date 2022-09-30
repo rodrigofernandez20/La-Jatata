@@ -3,14 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { ComandasComponent } from './comandas/comandas.component';
 import { HomeComponent } from './home/home.component';
 import { ReservasComponent } from './reservas/reservas.component';
+import { AllreservasComponent } from './allreservas/allreservas.component';
 
 const routes: Routes = [
   {path: '',
   redirectTo: 'home',
   pathMatch: 'full'},
   { path: 'comandas', component: ComandasComponent },
-  {path:'reservas',component:ReservasComponent},
-  {path:'home',component:HomeComponent}
+  {path:'newreserva',component:ReservasComponent},
+  {path:'home',component:HomeComponent},
+  {path:'reservas',component:AllreservasComponent}
 
 ];
 

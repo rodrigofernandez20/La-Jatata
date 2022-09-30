@@ -1,23 +1,44 @@
 <div class="container">
     <div [hidden]="submitted">
       <h1>Nueva Reserva</h1>
-      <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
-        <div class="form-group">
+      <form (ngSubmit)="onSubmit(form)" [formGroup]="form">
+        <!--<div class="form-group">
           <label for="name">Nombre de Reserva</label>
           <input type="text" class="form-control" id="name"
                  required>
-          <!--<div [hidden]="name.valid || name.pristine"
-               class="alert alert-danger">
-            Name is required
-          </div>-->
-        </div>
-  
-        <div class="form-group">
+        </div>-->
+        
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Nombre de Reserva</mat-label>
+          <input matInput formControlName="clientName">
+        </mat-form-field>
+        <br>
+        <!--<div class="form-group">
           <label for="cantidad-personas">Cantidad de Personas</label>
           <input type="text" class="form-control" id="alterEgo">
-        </div>
-        <div class="fechaylugar"> 
-          <div class="form-group date">
+        </div>-->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Cantidad de Personas</mat-label>
+          <input type="number" matInput formControlName="num_people">
+        </mat-form-field>
+        <br>
+        <!--<div class="fechaylugar"> -->
+          <mat-form-field class="date-input full-width" appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Lugar</mat-label>
+            <mat-select formControlName="zone">
+              <mat-option *ngFor="let zone of zones" [value]="zone">{{zone}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+          <!--<div class="form-group date">
             <label for="fecha">Fecha</label><br>
             <input type="date" class="form-control" id="alterEgo">
           </div>
@@ -27,21 +48,25 @@
             <select class="form-lugar" id="lugar">
               <option *ngFor="let zone of zones" [value]="zone">{{zone}}</option>
             </select>
-            <!--<div [hidden]="power.valid || power.pristine" class="alert alert-danger">
-              Power is required
-            </div>-->
-          </div>
-        </div>
-  
-        <button type="submit" class="guardar" [disabled]="!heroForm.form.valid">Guardar</button>
+          </div>-->
+        <!--</div>-->
+        <br>
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Notas (Opcional)</mat-label>
+          <textarea matInput formControlName="notas"></textarea>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="margin" type="submit">Guardar</button>
+        <button mat-raised-button color="accent">Reservar Platos</button>
+        <!--<button type="submit" class="guardar" [disabled]="!heroForm.form.valid">Guardar</button>
         <button type="button" class="reservar" >Reservar Platos</button>
+        -->
         
-       <!-- NOT SHOWN IN DOCS -->
-       <div class="notas">
+       <!--<div class="notas">
         <label for="notas">Notas</label>
         <input type="text" class="notas-input" id="alterEgo">
-      </div>
-       <!-- - -->
+      </div>-->
+  
       </form>
     </div>
   

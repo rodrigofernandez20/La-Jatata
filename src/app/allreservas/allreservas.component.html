@@ -1,0 +1,46 @@
+<body>
+    <div class="topnav">
+        <input class="date-picker" type="date"> 
+        <a class="split">Guardar</a>
+    </div>
+    <div class="flex-container">
+        <mat-card class="reservation-card" *ngFor="let res of reservations">
+            <mat-card-title>{{res.clientName}}</mat-card-title>
+            <mat-card-subtitle>Zona: {{res.zone}}</mat-card-subtitle>
+            <mat-card-subtitle>Número de personas: {{res.num_people}}</mat-card-subtitle>
+            <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Platos reservados:
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      Presione para mostrar
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <ul>
+                    <li *ngFor="let pro of res.products">{{pro.product_name}}</li>
+                  </ul>  
+                </mat-expansion-panel>
+            </mat-accordion>
+            <!--<mat-card-subtitle>Productos</mat-card-subtitle>
+            <mat-card-content>
+                <ul>
+                    <li *ngFor="let pro of res.products">{{pro.product_name}}</li>
+                </ul>  
+            </mat-card-content>-->
+            <mat-divider inset></mat-divider>
+
+            <mat-card-actions>
+                <button mat-raised-button color="primary">Generar Cuenta</button>
+                <button mat-mini-fab color="primary" (click)="deleteReservation(res)" class="round-button">
+                  <mat-icon>delete</mat-icon>
+                </button>
+                  <button mat-mini-fab color="primary" class="round-button">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  
+              </mat-card-actions>
+        </mat-card>
+    </div>
+</body>
