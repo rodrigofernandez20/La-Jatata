@@ -12,6 +12,7 @@ import { Product } from '../models/product.model';
 import { OrderService } from '../services/order-service/order.service';
 import { Reserva } from '../models/reserva.model';
 import { ReservationService } from '../services/reservation.service';
+import { ReservaModalComponent } from '../reserva-modal/reserva-modal.component';
 
 
 @Component({
@@ -71,11 +72,22 @@ export class ReservasComponent implements OnInit {
   }
   ngOnInit(): void {
     this.subscription = this.reservation.reserve.subscribe(reserve => this.reserve = reserve);
+    this.order = this.reserve.products!; 
+    //console.log(this.reserve);
     throw new Error('Method not implemented.');
     
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  idExists(){
+    if(this.reserve._id! >= 1){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
   saveReservation(){
     //this.reserve.products
@@ -83,7 +95,12 @@ export class ReservasComponent implements OnInit {
     for (let i =0;i<this.order.length;i++){
       this.reserve.products!.push(this.order[i])
     }
-    this.postReservation();
+    if(this.idExists()){
+      this.updateReservation();
+    }
+    else{
+      this.postReservation();
+    }
     this.router.navigate(['/reservas'])
     /*'product_id':this.order[i].product_id, //Acomodar ID
         "product_name":this.order[i].product_name,
@@ -91,6 +108,35 @@ export class ReservasComponent implements OnInit {
         "price":this.order[i].price,
         "total": this.order[i].total*/
     //this.reserve.products = orderToSave.values
+  }
+  updateReservation(){
+    //http put angular?
+    let updateUrl = this.reservations_url + '/'+ this.reserve._id;
+    var res : Reserva ={
+      'clientName': this.reserve.clientName,
+      'date':this.reserve.date,
+      'num_people':this.reserve.num_people,
+      'zone':this.reserve.zone,
+      'notas':this.reserve.notas,
+      'products':this.reserve.products,
+      'waiterId':this.reserve.waiterId
+   }
+    console.log(JSON.stringify(res));
+    return this.http.put<Reserva>(updateUrl, res).subscribe(data => console.log(data));
+
+  }
+  modifyReservation(){
+    //this.reservation.setReservation(this.reserve);
+    const ref =this.dialog.open(ReservaModalComponent,{ data: {
+      message:  this.reserve//or
+    }});
+    ref.afterClosed().subscribe((res: Reserva) => {
+      this.reserve.clientName = res.clientName;
+      this.reserve.date = res.date;
+      this.reserve.num_people = res.num_people;
+      this.reserve.zone = res.zone;
+      this.reserve.notas = res.notas;
+    });
   }
   postReservation(){
     const httpOptions = {

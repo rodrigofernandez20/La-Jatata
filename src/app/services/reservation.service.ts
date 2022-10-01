@@ -9,6 +9,7 @@ export class ReservationService {
  
   private messageSource = new BehaviorSubject(new Reserva);
   reserve = this.messageSource.asObservable();
+  //existingReservation = false;
   //public reserve: Reserva[] = []
 
   constructor() { }
@@ -19,4 +20,5 @@ export class ReservationService {
   public setReservation(reserva: any): void {
     this.messageSource.next(reserva)
   }
+  
 }

@@ -1,7 +1,12 @@
 <body>
     <div class="topnav">
-        <input class="date-picker" type="date"> 
-        <a class="split">Guardar</a>
+      <mat-form-field  class="date-input full-width center" appearance="fill">
+        <input (dateChange)="dateChanged('change', $event)" class="date-picker" [(ngModel)]='date' matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+        <!--<input (change)="dateChanged()"[(ngModel)]='date' class="date-picker" type="date"> -->
+        <!--<a class="split">Guardar</a>-->
     </div>
     <div class="flex-container">
         <mat-card class="reservation-card" *ngFor="let res of reservations">
@@ -19,7 +24,7 @@
                     </mat-panel-description>
                   </mat-expansion-panel-header>
                   <ul>
-                    <li *ngFor="let pro of res.products">{{pro.product_name}}</li>
+                    <li *ngFor="let pro of res.products">{{pro.quantity}} {{pro.product_name}}</li>
                   </ul>  
                 </mat-expansion-panel>
             </mat-accordion>
@@ -36,7 +41,7 @@
                 <button mat-mini-fab color="primary" (click)="deleteReservation(res)" class="round-button">
                   <mat-icon>delete</mat-icon>
                 </button>
-                  <button mat-mini-fab color="primary" class="round-button">
+                  <button (click)="modifyReservation(res)" mat-mini-fab color="primary" class="round-button">
                     <mat-icon>edit</mat-icon>
                   </button>
                   

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Reserva } from '../models/reserva.model';
@@ -14,19 +15,48 @@ import { ReservationService } from '../services/reservation.service';
 export class ReservaModalComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   subscription: Subscription = new Subscription;
-
+  message: Reserva = new Reserva();
+  reservations_url ='https://la-jatata.herokuapp.com/reservas'
   
-  constructor(private  dialogRef:  MatDialogRef<ReservaModalComponent>,private fb: FormBuilder, private reservation:ReservationService,private  router:  Router) { }
+  constructor(public http: HttpClient,private  dialogRef:  MatDialogRef<ReservaModalComponent>,private fb: FormBuilder, private reservation:ReservationService,private  router:  Router,@Inject(MAT_DIALOG_DATA) public  data:  any) {
+    if(data){
+      this.form = this.fb.group({
+        clientName: data.message.clientName,
+        num_people: data.message.num_people,
+        date: data.message.date,
+        zone: data.message.zone,
+        notas: data.message.notas
+      });
+    }
+    else{
+      this.form = this.fb.group({
+        clientName: [null],
+        num_people: [null],
+        date: [null],
+        zone: [null],
+        notas: [null]
+      });
+    }
+  }
 
+  modifyDataExists()
+  {
+    if(this.data){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
   ngOnInit(): void {
     this.subscription = this.reservation.reserve.subscribe(reserve => this.reserve = reserve)
-    this.form = this.fb.group({
+    /*this.form = this.fb.group({
       clientName: [null],
       num_people: [null],
       date: [null],
       zone: [null],
       notas: [null]
-    });
+    });*/
   }
   zones = ['Jatata 1', 'Jatata Grande',
             'Jatata Jardin','Jatata Nueva', 'Jardin','Terevinto 1','Terevinto 2','Sauce'];
@@ -47,12 +77,53 @@ export class ReservaModalComponent implements OnInit {
         'notas':form.value.notas,
         'products':[]
      }
-     console.log(res);
+     console.log(res); 
      this.reservation.setReservation(res);
      this.router.navigate(['/newreserva']);
      this.closePopUp();
      //this.reservation.setOrder(res);
   }
+  onEditAccepted(form:any){
+    var res : Reserva ={
+      'clientName': form.value.clientName,
+      'date':form.value.date,
+      'num_people':form.value.num_people,
+      'zone':form.value.zone,
+      'notas':form.value.notas,
+      'products':[]
+   }
+   this.closeAndSendReservation(res);
+  }
+
+  saveReservation(form:any){
+    var res : Reserva ={
+      'clientName': form.value.clientName,
+      'date':form.value.date,
+      'num_people':form.value.num_people,
+      'zone':form.value.zone,
+      'notas':form.value.notas,
+      'products':[]
+   }
+   this.postReservation(res);
+   this.dialogRef.close();
+   this.router.navigate(['/reservas']);
+  }
+
+  postReservation(res:Reserva){
+    const httpOptions = {
+      headers: new HttpHeaders({
+          'Content-Type':  'application/json'
+      })
+    };
+  
+    this.http.post(this.reservations_url, JSON.stringify(res), httpOptions)
+          .subscribe(data => console.log(data));
+  }
+
+  closeAndSendReservation(res:Reserva){
+    this.dialogRef.close(res);
+  }
+
   closePopUp() {
     this.dialogRef.close(false);
   }

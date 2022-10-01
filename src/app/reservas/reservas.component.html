@@ -10,7 +10,11 @@
     <body>
       <div class="topnav">
         <a class="split" (click)="goToComandasPage()">Mandar Comanda</a>
-        <input class="date-picker" type="date"> 
+        <button (click)="modifyReservation()" mat-mini-fab color="primary" class="round-button center-button">
+          <mat-icon >edit</mat-icon>
+        </button>
+        <!--<input class="date-picker" type="date"> -->
+        <h1 class="date-picker">Reserva: {{reserve.clientName}}</h1>
         <a class="split" (click)="saveReservation()">Guardar</a>
       </div>
       
@@ -107,7 +111,7 @@
           <div class="menu-item" *ngFor="let pro of products" (click)="openDialog(pro)">
             {{pro.name}}
           </div>  
-        </div>
+          </div>
         </div>
       <!--<ul *ngFor="let pro of products">
         <li>
