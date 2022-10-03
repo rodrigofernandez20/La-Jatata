@@ -26,6 +26,7 @@ export class AllreservasComponent implements OnInit {
    getReservas(){
     this.date.setHours(0, 0, 0, 0)
     let dateurl = this.url + '?date=' + this.date.toISOString()
+    console.log(dateurl)
     this.http.get<Reserva[]>(dateurl).subscribe(data =>{ 
       this.reservations = Object.values(data);
       console.log(this.reservations);
@@ -35,6 +36,13 @@ export class AllreservasComponent implements OnInit {
       this.reservations = Object.values(data);
       console.log(this.reservations);
     });*/
+  }
+  goToComandasPage(res:Reserva){
+    /*console.log(this.reserve);
+    this.sentOrder.setOrder(this.order);
+    console.log(this.sentOrder)*/
+    this.reservation.setReservation(res);
+    this.router.navigate(['/comandas'])
   }
 
   modifyReservation(res: Reserva){

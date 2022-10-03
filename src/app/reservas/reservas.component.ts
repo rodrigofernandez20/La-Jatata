@@ -65,11 +65,12 @@ export class ReservasComponent implements OnInit {
  
   products_url = 'https://la-jatata.herokuapp.com/products'
   reservations_url ='https://la-jatata.herokuapp.com/reservas'
+  category: string='PLATOS';
 
   constructor(private reservation:ReservationService,private sentOrder:OrderService, public http: HttpClient,private  dialog:  MatDialog, private  router:  Router,private snackBar: MatSnackBar){
     this.getProducts();
     
-  }
+  } 
   ngOnInit(): void {
     this.subscription = this.reservation.reserve.subscribe(reserve => this.reserve = reserve);
     this.order = this.reserve.products!; 
@@ -151,9 +152,11 @@ export class ReservasComponent implements OnInit {
   getProducts(){
     //let product = [{"name": 'Sopa de Mani',"price":15},{"name": 'Picante Mixto',"price":60},{"name": 'Pato al Vino',"price":80}, {"name": 'Pato Dorado',"price":60},{"name": 'Laping',"price":70},{"name": 'Picante de Lengua',"price":65}]
    //this.products = product;
-    this.http.get<Product[]>(this.products_url).subscribe(data =>{ 
+    let url = this.products_url + '?category='+ this.category
+    console.log(url)
+    this.http.get<Product[]>(url).subscribe(data =>{ 
       this.products = Object.values(data);
-      this.allProducts = this.products;
+      //this.allProducts = this.products;
       console.log(this.products);
     });
   }
@@ -169,8 +172,14 @@ export class ReservasComponent implements OnInit {
       this.categories[i].active = false;
     }
     cat.active = !cat.active;
-    this.products =this.allProducts.filter(x=> x.category == cat.name)
-    
+    if(cat.name ==="TRAGOS"){
+      this.category = 'BEBIDAS ALCOHOLICAS';
+    }
+    else{
+      this.category = cat.name;
+    }
+    //this.products =this.allProducts.filter(x=> x.category == cat.name)
+    this.getProducts()
   }
   //post http in angular?
 

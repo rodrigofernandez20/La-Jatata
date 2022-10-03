@@ -33,6 +33,7 @@ import { CommonModule } from '@angular/common';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatRadioModule } from '@angular/material/radio';
+import { ProductosComponent } from './productos/productos.component';
 //import { NgMaterialModule } from './ng-material/ng-material.module';
 
 @NgModule({
@@ -44,7 +45,8 @@ import { MatRadioModule } from '@angular/material/radio';
     routingComponents,
     HomeComponent,
     ReservaModalComponent,
-    AllreservasComponent
+    AllreservasComponent,
+    ProductosComponent
   ],
   imports: [
     BrowserModule,

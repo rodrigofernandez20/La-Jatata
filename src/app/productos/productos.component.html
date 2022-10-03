@@ -1,0 +1,48 @@
+<body>
+  <div class="topnav">
+    <!--<a class="split" (click)="goToComandasPage()">Mandar Comanda</a>-->
+    <mat-form-field appearance="fill">
+        <mat-label>Buscar un producto</mat-label>
+        <input ng-change="changeSearchValue()"
+          matInput
+          [(ngModel)]="searchValue"
+          placeholder="Buscar un producto"
+        />
+        <mat-icon class='search-icon' color="primary" matPrefix (click)="filterProducts(searchValue)"
+          >search</mat-icon
+        >
+      </mat-form-field>
+    <a class="split">Nuevo</a>
+  </div>
+  <div class="container">
+    <div id="menu-container" class="flex-item">
+      <div class="categories">
+        <a
+          *ngFor="let cat of categories"
+          [ngClass]="{ active: cat.active }"
+          (click)="changeCategory(cat)"
+          >{{ cat.name }}</a>
+      </div>
+      <!--Products cards-->
+      <div class="flex-container">
+        <mat-card class="product-card" *ngFor="let pro of products">
+            <mat-card-title>{{pro.name}}</mat-card-title>
+            <mat-card-subtitle>Precio: {{pro.price}} Bs</mat-card-subtitle>
+            <mat-card-subtitle>Día: {{pro.day}}</mat-card-subtitle>
+                <mat-divider inset></mat-divider>
+
+            <mat-card-actions>
+                <button mat-mini-fab color="primary" class="round-button">
+                <mat-icon>delete</mat-icon>
+                </button>
+                <button mat-mini-fab color="primary" class="round-button">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                
+            </mat-card-actions>
+            </mat-card> 
+        </div>  
+
+    </div>
+  </div>
+</body>

@@ -8,8 +8,8 @@
     </head>
     <body>
       <div class="topnav">
-        <h1 class="date-picker"> Familia</h1>
-        <a class="split">Guardar</a>
+        <h1 class="date-picker"> Familia: {{reserva.clientName}}</h1>
+        <a class="split">Mandar</a>
       </div> 
       
       <div class="container">
@@ -33,16 +33,16 @@
                   <tr>
                       <th class="table-header">Producto</th>
                       <th class="table-header">Reservado</th>
-                      <th class="table-header">SubTotal</th>
-                      <th class="table-header">Editar</th>
-                      <th class="table-header">Borrar</th>
+                      <th class="table-header">Mandado</th>
+                      <th class="table-header">Entregado</th>
+                      <th class="table-header">Pendiente</th>
                   </tr>
                   <tr>
                       <td class="dotted-border" colspan="6 "></td>
                   </tr>   
                 </thead>
                 <tbody>
-                  <tr *ngFor="let or of order">
+                  <tr *ngFor="let or of reserva.products">
                     <td>{{ or.product_name }}</td>
                     <td>{{ or.quantity }}</td>
                     <td>{{ or.total }}</td>

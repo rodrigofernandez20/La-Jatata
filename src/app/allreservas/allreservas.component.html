@@ -1,5 +1,6 @@
 <body>
     <div class="topnav">
+      <!--<a class="split" (click)="goToComandasPage()">Mandar Comanda</a>-->
       <mat-form-field  class="date-input full-width center" appearance="fill">
         <input (dateChange)="dateChanged('change', $event)" class="date-picker" [(ngModel)]='date' matInput [matDatepicker]="picker">
         <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -26,6 +27,7 @@
                   <ul>
                     <li *ngFor="let pro of res.products">{{pro.quantity}} {{pro.product_name}}</li>
                   </ul>  
+                  <button mat-raised-button color="primary" (click)="goToComandasPage(res)">Comanda</button>
                 </mat-expansion-panel>
             </mat-accordion>
             <!--<mat-card-subtitle>Productos</mat-card-subtitle>

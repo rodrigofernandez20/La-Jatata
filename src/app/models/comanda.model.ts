@@ -1,8 +1,11 @@
+import { Time } from "@angular/common";
 import { Order } from "./order.model";
 
-export interface Comanda {
-    family?: string;
-    waiter?: string;
-    order?: Order[];
+export class Comanda {
+    _id?: Number;
+    id_reserva?: Number;
+    products?: Order[];
+    status?: String;
+    created_at?: Time;
 }
 
