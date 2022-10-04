@@ -95,8 +95,20 @@
     border: black solid;
   }
   .menu-item{
+    width: 9rem;
+    margin: 10px;
+    padding: 5px 10px;
+    height: 70px;
+    font-family: Nunito;
+    font-size: 17px;
+    text-align: center;
+   // line-height: 70px;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
-    display: grid;
+    /*display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     border: black solid;
@@ -112,8 +124,7 @@
     font-family: Nunito;
     align-content: center;
     text-align: center;
-    text-align-last: center;
-    
+    text-align-last: center;*/
     
   }
 

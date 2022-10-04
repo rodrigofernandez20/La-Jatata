@@ -143,4 +143,36 @@ tbody.summary-table td:nth-child(2) {
 tbody.summary-table td:nth-child(3) {
     width: 25px;
 }*/
+
+.subtitle {  
+  line-height: 3px;
+  font-family: Nunito;
+  }
+.title {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-family: Nunito;
+  font-size: 30px;
+  font-weight: 200;
+}
+.comanda-container {
   
+  justify-content: center;
+  font-family: Nunito;
+}
+.quantity-name {
+  font-size: 35px;
+  font-family: Nunito;
+  font-weight: 200;
+}
+.button-comanda {
+  //justify-content: center;
+  width: 100%;
+  font-family: Nunito;
+  font-weight: 300;
+}
+.comanda-card{
+  margin-top: 20px ;
+  margin-bottom: 20px;
+  padding: 10px 42px 10px 42px;
+}

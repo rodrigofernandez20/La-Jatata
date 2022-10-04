@@ -28,7 +28,7 @@
             <table class="receipt-table">
                 <thead>
                   <tr>
-                      <td class="dotted-border" colspan="6"></td>
+                      <td class="dotted-border" colspan="8"></td>
                   </tr>
                   <tr>
                       <th class="table-header">Producto</th>
@@ -38,7 +38,7 @@
                       <th class="table-header">Pendiente</th>
                   </tr>
                   <tr>
-                      <td class="dotted-border" colspan="6 "></td>
+                      <td class="dotted-border" colspan="8"></td>
                   </tr>   
                 </thead>
                 <tbody>
@@ -48,6 +48,8 @@
                     <td>{{ or.total }}</td>
                     <td><span class="material-symbols-outlined grow">edit</span></td>
                     <td><span class="material-symbols-outlined grow">delete</span></td>
+                    <td><span class="material-symbols-outlined grow">edit</span></td>
+                    <td><span class="material-symbols-outlined grow">edit</span></td>
                   </tr>
                 </tbody>
             </table>
@@ -56,18 +58,34 @@
             <table class="summary-table">
                 <tbody class="summary-table" id="total-summary">
                     <tr>
-                        <td class="dotted-border" colspan="5"></td>
+                        <td class="dotted-border" colspan="7"></td>
                     </tr>
                     <tr>
-                        <td class="empty-border" colspan="5"></td>
+                        <td class="empty-border" colspan="7"></td>
                     </tr>
                 </tbody>  
             </table>
         </div>
         </section>  
   
-        <div id="menu-container" class="flex-item">  
-          <p>Hola mundo</p>
+        <div id="menu-container" class="comanda-container flex-item"> 
+          <div>
+          <mat-card class="comanda-card">
+            <mat-card-title class="title">Mesero</mat-card-title>
+            <mat-card-subtitle class="subtitle">Cliente</mat-card-subtitle>
+            <mat-card-subtitle class="subtitle">Zona</mat-card-subtitle>
+            <mat-card-subtitle class="subtitle">14:00</mat-card-subtitle>
+            <mat-divider inset class="divider"></mat-divider>
+            <br>
+            <mat-card-actions *ngFor="let pro of products">
+              <mat-card-content class="quantity-name"> {{pro.quantity}}   {{pro.name}}</mat-card-content>
+              <button class="button-comanda" mat-flat-button color="warn">Pendiente</button>
+            </mat-card-actions>
+            <mat-divider inset></mat-divider>
+            <mat-card-content> Notas:</mat-card-content>
+            
+            </mat-card> 
+        </div> 
         </div>
         </div>
 

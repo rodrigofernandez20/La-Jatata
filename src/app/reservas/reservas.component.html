@@ -12,7 +12,7 @@
         <!--<a class="split" (click)="goToComandasPage()">Mandar Comanda</a>-->
         <button (click)="modifyReservation()" mat-mini-fab color="primary" class="round-button">
           <mat-icon >edit</mat-icon>
-        </button>
+        </button> 
         <!--<input class="date-picker" type="date"> -->
         <h1 class="date-picker">Reserva: {{reserve.clientName}}</h1>
         <a class="split" (click)="saveReservation()">Guardar</a>
@@ -108,9 +108,9 @@
             <a (click)="changeCategory()">Tragos</a>
             <a (click)="changeCategory()">Lacteos</a>-->
           </div>
-          <div class="menu-item" *ngFor="let pro of products" (click)="openDialog(pro)">
+          <mat-card class="menu-item" *ngFor="let pro of products" (click)="openDialog(pro)">
             {{pro.name}}
-          </div>  
+          </mat-card>  
           </div>
         </div>
       <!--<ul *ngFor="let pro of products">

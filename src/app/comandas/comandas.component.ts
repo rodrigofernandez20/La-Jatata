@@ -23,7 +23,15 @@ export class ComandasComponent implements OnInit {
   subscription: Subscription = new Subscription;
   previousComandas: Comanda[] = []
   url_comandas = 'https://la-jatata.herokuapp.com/comandas'
-  
+  products =[{
+    'name':'Silpancho',
+    'quantity': 2
+  },
+  {
+    'name':'Sopa',
+    'quantity': 3
+  }
+]
 
   constructor(public http: HttpClient,private reservation: ReservationService) {
       /*this.order = receivedOrder.getOrder()
