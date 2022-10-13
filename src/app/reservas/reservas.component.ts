@@ -13,6 +13,7 @@ import { OrderService } from '../services/order-service/order.service';
 import { Reserva } from '../models/reserva.model';
 import { ReservationService } from '../services/reservation.service';
 import { ReservaModalComponent } from '../reserva-modal/reserva-modal.component';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -81,7 +82,6 @@ export class ReservasComponent implements OnInit {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
   idExists(){
     if(this.reserve._id! >= 1){
       return true;
@@ -92,16 +92,23 @@ export class ReservasComponent implements OnInit {
   }
   saveReservation(){
     //this.reserve.products
+    let message = 'Se ha creado la reserva correctamente'
     this.reserve.products! = [];
     for (let i =0;i<this.order.length;i++){
       this.reserve.products!.push(this.order[i])
     }
     if(this.idExists()){
       this.updateReservation();
+      message = 'Se ha editado la reserva correctamente'
     }
     else{
       this.postReservation();
     }
+    Swal.fire(
+      '¡Creado exitosamente!',
+      message,
+      'success'
+    )
     this.router.navigate(['/reservas'])
     /*'product_id':this.order[i].product_id, //Acomodar ID
         "product_name":this.order[i].product_name,
@@ -160,7 +167,6 @@ export class ReservasComponent implements OnInit {
       console.log(this.products);
     });
   }
-
   goToComandasPage(){
     console.log(this.reserve);
     this.sentOrder.setOrder(this.order);
@@ -205,7 +211,7 @@ export class ReservasComponent implements OnInit {
   openDialog(pro: Product){
     if(this.order.some(e => e.product_name === pro.name)){
       const snack = this.snackBar.open('Este Producto ya se encuentra en la reserva',"Cerrar");
-    }
+    } 
     else{
     //Chequear si el item ya existe, si es que ya existe enviar un mensaje
       const ref =this.dialog.open(QuantityModalComponent,{ data: {
@@ -252,7 +258,7 @@ export class ReservasComponent implements OnInit {
       if (confirmed) {
         this.order = this.order.filter(item => item != or);
         this.total -= or.total!
-      }
+      } 
     });
     
   }

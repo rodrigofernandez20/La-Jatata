@@ -12,7 +12,7 @@
           >search</mat-icon
         >
       </mat-form-field>
-    <a class="split">Nuevo</a> 
+    <a (click)="openDialog()" class="split">Nuevo</a> 
   </div>
   <div class="container">
     <div id="menu-container" class="flex-item">
@@ -32,17 +32,17 @@
                 <mat-divider inset></mat-divider>
 
             <mat-card-actions>
-                <button mat-mini-fab color="primary" class="round-button">
+                <button (click)="deleteProduct(pro)" mat-mini-fab color="primary" class="round-button">
                 <mat-icon>delete</mat-icon>
                 </button>
-                <button mat-mini-fab color="primary" class="round-button">
+                <button (click)="editProduct(pro)" mat-mini-fab color="primary" class="round-button">
                     <mat-icon>edit</mat-icon>
                 </button>
                 
             </mat-card-actions>
             </mat-card> 
         </div>  
-
+ 
     </div>
   </div>
 </body>

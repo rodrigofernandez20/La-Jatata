@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 import { Reserva } from '../models/reserva.model';
 import { ReservationService } from '../services/reservation.service';
 
@@ -13,28 +14,37 @@ import { ReservationService } from '../services/reservation.service';
   styleUrls: ['./reserva-modal.component.scss']
 })
 export class ReservaModalComponent implements OnInit {
+  //validators: FormGroup = new FormGroup({});
   form: FormGroup = new FormGroup({});
   subscription: Subscription = new Subscription;
   message: Reserva = new Reserva();
   reservations_url ='https://la-jatata.herokuapp.com/reservas'
+  isSubmitted = false;
   
   constructor(public http: HttpClient,private  dialogRef:  MatDialogRef<ReservaModalComponent>,private fb: FormBuilder, private reservation:ReservationService,private  router:  Router,@Inject(MAT_DIALOG_DATA) public  data:  any) {
     if(data){
-      this.form = this.fb.group({
-        clientName: data.message.clientName,
+      /*this.form = this.fb.group({
+        clientName: new FormControl(data.message.clientName,Validators.required),
         num_people: data.message.num_people,
-        date: data.message.date,
+        date: new FormControl(data.message.date,Validators.required),
+        zone: data.message.zone,
+        notas: data.message.notas
+      });*/
+      this.form = this.fb.group({
+        clientName: [data.message.clientName,[Validators.required]],
+        num_people: data.message.num_people,
+        date: [data.message.date,[Validators.required]],
         zone: data.message.zone,
         notas: data.message.notas
       });
     }
     else{
       this.form = this.fb.group({
-        clientName: [null],
-        num_people: [null],
-        date: [null],
-        zone: [null],
-        notas: [null]
+        clientName: ['',[Validators.required]],//new FormControl([null],Validators.required),
+        num_people: '',
+        date: ['',[Validators.required]],//new FormControl([null],Validators.required),
+        zone: '',
+        notas: ''
       });
     }
   }
@@ -49,7 +59,11 @@ export class ReservaModalComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.subscription = this.reservation.reserve.subscribe(reserve => this.reserve = reserve)
+    this.subscription = this.reservation.reserve.subscribe(reserve => this.reserve = reserve);
+    /*this.validators = this.fb.group({
+      clientName: ['', [Validators.required]],
+      date: ['', [Validators.required]]
+    });*/
     /*this.form = this.fb.group({
       clientName: [null],
       num_people: [null],
@@ -69,18 +83,25 @@ export class ReservaModalComponent implements OnInit {
   }
   onSubmit(form:any){
     //alert('SUCCESS!! :-)\n\n' + JSON.stringify(form.value, null, 4));
-     var res : Reserva ={
-        'clientName': form.value.clientName,
-        'date':form.value.date,
-        'num_people':form.value.num_people,
-        'zone':form.value.zone,
-        'notas':form.value.notas,
-        'products':[]
-     }
-     console.log(res); 
-     this.reservation.setReservation(res);
-     this.router.navigate(['/newreserva']);
-     this.closePopUp();
+    this.isSubmitted = true;
+    if (!this.form.valid) {
+      console.log('Please provide all the required values!')
+      //return false;
+    }
+    else{
+      var res : Reserva ={
+          'clientName': form.value.clientName,
+          'date':form.value.date,
+          'num_people':form.value.num_people,
+          'zone':form.value.zone,
+          'notas':form.value.notas,
+          'products':[]
+      }
+      console.log(res); 
+      this.reservation.setReservation(res);
+      this.router.navigate(['/newreserva']);
+      this.closePopUp();
+    }
      //this.reservation.setOrder(res);
   }
   onEditAccepted(form:any){
@@ -94,19 +115,33 @@ export class ReservaModalComponent implements OnInit {
    }
    this.closeAndSendReservation(res);
   }
-
+  get errorControl() {
+    return this.form.controls;
+  } 
   saveReservation(form:any){
-    var res : Reserva ={
-      'clientName': form.value.clientName,
-      'date':form.value.date,
-      'num_people':form.value.num_people,
-      'zone':form.value.zone,
-      'notas':form.value.notas,
-      'products':[]
-   }
-   this.postReservation(res);
-   this.dialogRef.close();
-   this.router.navigate(['/reservas']);
+    this.isSubmitted = true;
+    if (!this.form.valid) {
+      console.log('Please provide all the required values!')
+      //return false;
+    }
+    else{
+      var res : Reserva ={
+        'clientName': form.value.clientName,
+        'date':form.value.date,
+        'num_people':form.value.num_people,
+        'zone':form.value.zone,
+        'notas':form.value.notas,
+        'products':[]
+      }
+      this.postReservation(res);
+      this.dialogRef.close();
+      Swal.fire(
+        '¡Creado exitosamente!',
+        'Se ha creado la reserva correctamente',
+        'success'
+      )
+      this.router.navigate(['/reservas']);
+    }
   }
 
   postReservation(res:Reserva){

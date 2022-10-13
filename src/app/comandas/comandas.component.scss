@@ -10,7 +10,10 @@
   display: flex;
   font-family: Nunito;
 }
-
+.full-width{
+  min-width:100%;
+  min-height: 100%;
+  }
   .topnav a.split {
     float: right;
     color: #f2f2f2;

@@ -9,7 +9,7 @@
     <body>
       <div class="topnav">
         <h1 class="date-picker"> Familia: {{reserva.clientName}}</h1>
-        <a class="split">Mandar</a>
+        <a (click)="sendComanda()" class="split">Mandar</a>
       </div> 
       
       <div class="container">
@@ -44,12 +44,11 @@
                 <tbody>
                   <tr *ngFor="let or of reserva.products">
                     <td>{{ or.product_name }}</td>
-                    <td>{{ or.quantity }}</td>
-                    <td>{{ or.total }}</td>
-                    <td><span class="material-symbols-outlined grow">edit</span></td>
-                    <td><span class="material-symbols-outlined grow">delete</span></td>
-                    <td><span class="material-symbols-outlined grow">edit</span></td>
-                    <td><span class="material-symbols-outlined grow">edit</span></td>
+                    <td>{{ or.quantity }}</td> 
+                    <td>{{ or.sentQuantity }}</td>
+                    <td>{{ or.receivedQuantity }}</td>
+                    <td>{{ or.pendant }}</td>
+                    <td><button [disabled]="noItemsLeft(or)" (click)="openDialog(or)" mat-flat-button color="primary">Mandar</button></td>
                   </tr>
                 </tbody>
             </table>
@@ -72,17 +71,23 @@
           <div>
           <mat-card class="comanda-card">
             <mat-card-title class="title">Mesero</mat-card-title>
-            <mat-card-subtitle class="subtitle">Cliente</mat-card-subtitle>
-            <mat-card-subtitle class="subtitle">Zona</mat-card-subtitle>
+            <mat-card-subtitle class="subtitle">Cliente: {{reserva.clientName}}</mat-card-subtitle>
+            <mat-card-subtitle class="subtitle">Zona: {{reserva.zone}}</mat-card-subtitle>
             <mat-card-subtitle class="subtitle">14:00</mat-card-subtitle>
             <mat-divider inset class="divider"></mat-divider>
             <br>
-            <mat-card-actions *ngFor="let pro of products">
-              <mat-card-content class="quantity-name"> {{pro.quantity}}   {{pro.name}}</mat-card-content>
-              <button class="button-comanda" mat-flat-button color="warn">Pendiente</button>
+            <mat-card-actions *ngFor="let pro of comanda.products">
+              <mat-card-content class="quantity-name"> {{pro.quantity}}   {{pro.product_name}}</mat-card-content>
+              <!--<button class="button-comanda" mat-flat-button color="warn">{{pro.state}}</button>-->
+              <button (click)="deleteProduct(pro)" class="button-comanda" mat-flat-button color="warn">Eliminar</button>
             </mat-card-actions>
             <mat-divider inset></mat-divider>
-            <mat-card-content> Notas:</mat-card-content>
+            <mat-card-content>
+              <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Notas (Opcional)</mat-label>
+                <textarea matInput  [(ngModel)]="notes"></textarea>
+              </mat-form-field>
+            </mat-card-content>
             
             </mat-card> 
         </div> 

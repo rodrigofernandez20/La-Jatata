@@ -10,7 +10,10 @@
         
         <mat-form-field appearance="fill" class="full-width">
           <mat-label>Nombre de Reserva</mat-label>
-          <input matInput formControlName="clientName">
+          <input required matInput formControlName="clientName">
+          <mat-error class="error" *ngIf="isSubmitted && form.get('clientName')!.hasError('required')">
+            Este campo es <strong>obligatorio</strong>
+          </mat-error>
         </mat-form-field>
         <br>
         <!--<div class="form-group">
@@ -25,10 +28,13 @@
         <!--<div class="fechaylugar"> -->
           <mat-form-field class="date-input full-width" appearance="fill">
             <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="date">
+            <input required matInput [matDatepicker]="picker" formControlName="date">
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="form.get('date')!.hasError('required')">
+              Este campo es <strong>obligatorio</strong>
+            </mat-error>
           </mat-form-field>
           <br>
           <mat-form-field appearance="fill" class="full-width">

@@ -10,11 +10,16 @@ import {MatDialogRef, MAT_DIALOG_DATA, MatDialog} from  '@angular/material/dialo
 export class QuantityModalComponent implements OnInit {
   quantity: number=1;
   product: string ="";
-  onAdd = new EventEmitter();
+  maxquantity: number = 100;
 
+  onAdd = new EventEmitter();
+ 
   constructor(private  dialogRef:  MatDialogRef<QuantityModalComponent>, @Inject(MAT_DIALOG_DATA) public  data:  any) {
     this.product = data.message.name;
     this.quantity = data.quantity;
+    if(data.maxquantity >0){
+      this.maxquantity = data.maxquantity;
+    }
   }
   
   ngOnInit(): void {
@@ -23,7 +28,9 @@ export class QuantityModalComponent implements OnInit {
     this.quantity= parseInt(newValue.target.value)
   }
   plus(){
-    this.quantity+=1;
+    if(this.quantity<this.maxquantity){
+      this.quantity+=1;
+    }
   }
   minus(){
     if(this.quantity>1){
@@ -36,7 +43,7 @@ export class QuantityModalComponent implements OnInit {
 
   confirmClicked(){
     this.onAdd.emit(this.quantity);
-    this.dialogRef.close();
+    this.dialogRef.close(this.quantity);
   }
 
 }

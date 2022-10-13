@@ -4,4 +4,7 @@ export interface Order {
   price?: number;
   quantity?: number;
   total?: number;
+  sentQuantity?:number;
+  receivedQuantity?:number;
+  pendant?:number;
 }

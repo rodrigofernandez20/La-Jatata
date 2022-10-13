@@ -1,0 +1,63 @@
+<div class="container">
+    <div>
+      <h1>Nuevo Producto</h1> 
+      <form [formGroup]="form"> 
+        
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Nombre del Producto</mat-label>
+          <input required matInput formControlName="name">
+          <mat-error class="error" *ngIf="isSubmitted && form.get('name')!.hasError('required')">
+            Este campo es <strong>obligatorio</strong>
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <!--<div class="form-group">
+          <label for="cantidad-personas">Cantidad de Personas</label>
+          <input type="text" class="form-control" id="alterEgo">
+        </div>-->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Precio (Bs)</mat-label>
+          <input type="number" matInput formControlName="price" required>
+          <mat-error class="error" *ngIf="isSubmitted && form.get('price')!.hasError('required')">
+            Este campo es <strong>obligatorio</strong>
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <!--<div class="fechaylugar"> -->
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Categoria</mat-label>
+            <mat-select formControlName="category" required>
+              <mat-option *ngFor="let cat of categories" [value]="cat">{{cat}}</mat-option>
+            </mat-select>
+            <mat-error class="error" *ngIf="isSubmitted && form.get('category')!.hasError('required')">
+                Este campo es <strong>obligatorio</strong>
+              </mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Días en el Menu</mat-label>
+            <mat-select formControlName="day">
+              <mat-option *ngFor="let d of days" [value]="d">{{d}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+        <br>
+        
+
+        <button (click)="saveProduct(form)" *ngIf="!modifyDataExists()" mat-raised-button color="primary" class="margin">Guardar</button>
+        <!--<button (click)="onSubmit(form)" *ngIf="!modifyDataExists()" mat-raised-button color="accent">Reservar Platos</button>-->
+        <button (click)="onEditAccepted(form)" *ngIf="modifyDataExists()" mat-raised-button color="primary" class="margin">Aceptar</button>
+        <button  (click)="closePopUp()" *ngIf="modifyDataExists()" mat-raised-button color="accent">Cancelar</button>
+        <!--<button type="submit" class="guardar" [disabled]="!heroForm.form.valid">Guardar</button>
+        <button type="button" class="reservar" >Reservar Platos</button>
+        -->
+        
+       <!--<div class="notas">
+        <label for="notas">Notas</label>
+        <input type="text" class="notas-input" id="alterEgo">
+      </div>-->
+  
+      </form>
+    </div>
+  
+    
