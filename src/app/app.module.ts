@@ -32,9 +32,12 @@ import { CommonModule } from '@angular/common';
 
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import {MatMenuModule} from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { ProductosComponent } from './productos/productos.component';
 import { NewproductModalComponent } from './newproduct-modal/newproduct-modal.component';
+import { WaitersComponent } from './waiters/waiters.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
 //import { NgMaterialModule } from './ng-material/ng-material.module';
 
 @NgModule({
@@ -48,13 +51,16 @@ import { NewproductModalComponent } from './newproduct-modal/newproduct-modal.co
     ReservaModalComponent,
     AllreservasComponent,
     ProductosComponent,
-    NewproductModalComponent
+    NewproductModalComponent,
+    WaitersComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     RouterModule,
+    MatToolbarModule,
     AppRoutingModule,
+    MatMenuModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule,CommonModule,MatSortModule,MatTableModule,MatRadioModule,MatIconModule,MatSelectModule,MatNativeDateModule, MatInputModule,MatDatepickerModule, MatButtonModule,CdkAccordionModule,MatExpansionModule, MatCardModule, MatFormFieldModule,FormsModule,MatSnackBarModule,MatDividerModule

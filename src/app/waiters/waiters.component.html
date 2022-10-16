@@ -1,0 +1,43 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row >
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-form-field  class="date-input full-width center" appearance="fill">
+      <input (dateChange)="dateChanged('change', $event)" class="date-picker" [(ngModel)]='date' matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <mat-select [(ngModel)]="selectedZone" class="select">
+      <mat-option [value]="'Todos'">Todos</mat-option>
+      <mat-option [value]="zone" *ngFor="let zone of zones">{{ zone }}</mat-option>
+    </mat-select>
+    <mat-select [(ngModel)]="selectedWaiter" class="select">
+      <mat-option [value]="'Todos'">Todos</mat-option>
+      <mat-option [value]="'Sin Asignar'">Sin Asignar</mat-option>
+      <mat-option [value]="wai.waiterName" *ngFor="let wai of waiters">{{ wai.waiterName }}</mat-option>
+    </mat-select>
+    <button (click)="searchButtonPressed()" mat-mini-fab color="primary">
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="flex-container">
+    <mat-card class="reservation-card" *ngFor="let res of reservations">
+        <mat-card-title>Cliente: {{res.clientName}}</mat-card-title>
+        <mat-card-title *ngIf=" waiterExists(res)" id="assigned" class="waiter-title">Mesero/a: {{res.waiterName}}</mat-card-title>
+        <mat-card-title *ngIf=" !waiterExists(res)" id="not-assigned" class="waiter-title">Mesero/a: Sin Asignar</mat-card-title>
+        <mat-card-subtitle>Zona: {{res.zone}}</mat-card-subtitle>
+        <mat-card-subtitle>Número de personas: {{res.num_people}}</mat-card-subtitle>
+        <mat-divider inset></mat-divider>
+
+        <mat-card-actions>
+            <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">Asignar</button>
+              <mat-menu #menu="matMenu">
+                <button (click)="assignWaiter(res,mesero.waiterName!)" *ngFor="let mesero of waiters" mat-menu-item>{{mesero.waiterName}}</button>
+              </mat-menu>
+        </mat-card-actions>
+    </mat-card>
+</div>

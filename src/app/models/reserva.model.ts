@@ -8,7 +8,7 @@ export class Reserva {
     num_people?: number;
     total?: number;
     notas?: string;
-    waiterId?: number;
+    waiterName?: string;
     products?:Order[]/* =[{
         product_id: Number,
         product_name: String,

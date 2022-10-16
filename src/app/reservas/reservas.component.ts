@@ -127,7 +127,7 @@ export class ReservasComponent implements OnInit {
       'zone':this.reserve.zone,
       'notas':this.reserve.notas,
       'products':this.reserve.products,
-      'waiterId':this.reserve.waiterId
+      'waiterName':this.reserve.waiterName
    }
     console.log(JSON.stringify(res));
     return this.http.put<Reserva>(updateUrl, res).subscribe(data => console.log(data));

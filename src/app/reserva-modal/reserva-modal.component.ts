@@ -35,7 +35,8 @@ export class ReservaModalComponent implements OnInit {
         num_people: data.message.num_people,
         date: [data.message.date,[Validators.required]],
         zone: data.message.zone,
-        notas: data.message.notas
+        notas: data.message.notas,
+        
       });
     }
     else{
@@ -95,7 +96,8 @@ export class ReservaModalComponent implements OnInit {
           'num_people':form.value.num_people,
           'zone':form.value.zone,
           'notas':form.value.notas,
-          'products':[]
+          'products':[],
+          'waiterName':''
       }
       console.log(res); 
       this.reservation.setReservation(res);
@@ -131,7 +133,7 @@ export class ReservaModalComponent implements OnInit {
         'num_people':form.value.num_people,
         'zone':form.value.zone,
         'notas':form.value.notas,
-        'products':[]
+        'products':[],'waiterName':''
       }
       this.postReservation(res);
       this.dialogRef.close();
