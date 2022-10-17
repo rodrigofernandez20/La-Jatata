@@ -12,7 +12,7 @@ export class ConfirmModalComponent implements OnInit {
   constructor(private  dialogRef:  MatDialogRef<ConfirmModalComponent>, @Inject(MAT_DIALOG_DATA) public  data:  any) {
     this.message = data.message;
    }
-
+ 
   ngOnInit(): void {
   }
 

@@ -39,7 +39,7 @@
             <mat-divider inset></mat-divider>
 
             <mat-card-actions>
-                <button mat-raised-button color="primary">Generar Cuenta</button>
+                <button [disabled]="totalEqualsZero(res)" (click)="openRecibo(res)" mat-raised-button color="primary">Generar Cuenta</button>
                 <button mat-mini-fab color="primary" (click)="deleteReservation(res)" class="round-button">
                   <mat-icon>delete</mat-icon>
                 </button>

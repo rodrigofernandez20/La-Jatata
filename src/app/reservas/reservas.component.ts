@@ -25,7 +25,7 @@ export class ReservasComponent implements OnInit {
 
   title = 'la-jatata';
   actualPrice: number=0;
-  total: number=0.00;
+  //total: number=0.00;
   categories= [{
     'name':'PLATOS',
     'active':false
@@ -73,6 +73,7 @@ export class ReservasComponent implements OnInit {
     
   } 
   ngOnInit(): void {
+    //this.reserve.total = 0;
     this.subscription = this.reservation.reserve.subscribe(reserve => this.reserve = reserve);
     this.order = this.reserve.products!; 
     //console.log(this.reserve);
@@ -127,7 +128,8 @@ export class ReservasComponent implements OnInit {
       'zone':this.reserve.zone,
       'notas':this.reserve.notas,
       'products':this.reserve.products,
-      'waiterName':this.reserve.waiterName
+      'waiterName':this.reserve.waiterName,
+      'total': this.reserve.total
    }
     console.log(JSON.stringify(res));
     return this.http.put<Reserva>(updateUrl, res).subscribe(data => console.log(data));
@@ -228,7 +230,7 @@ export class ReservasComponent implements OnInit {
           "price":pro.price,
           "total": this.actualPrice*data
         })
-        this.total +=this.actualPrice*data;
+        this.reserve.total! +=this.actualPrice*data;
       });
     }
   }
@@ -241,12 +243,12 @@ export class ReservasComponent implements OnInit {
       const price = or.total!/ or.quantity!
       const sub = ref.componentInstance.onAdd.subscribe((data) => {
         
-        this.total -= or.total!
+        this.reserve.total! -= or.total!
         or.quantity = data
         let itemFound =this.order.find(item => item.product_name == or.product_name)
         itemFound!.quantity = data;
         itemFound!.total = or.quantity! * price//this.order.find(item => item.id == or.id)!.quantity = data;
-        this.total += or.quantity! * price
+        this.reserve.total! += or.quantity! * price
       });
   }
   //Cuando se presiona el boton delete
@@ -257,19 +259,11 @@ export class ReservasComponent implements OnInit {
     ref.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
         this.order = this.order.filter(item => item != or);
-        this.total -= or.total!
+        this.reserve.total! -= or.total!
       } 
     });
     
   }
 
-    /*return new Promise(resolve=>{
-      this.http.get("https://ucb-sit-backend-donations-app.herokuapp.com/api/proposals/user").subscribe(data=>{
-          this.products = data;
-      },error=>{
-        console.log(error);
-      });
-    });
-  }*/
 
 }

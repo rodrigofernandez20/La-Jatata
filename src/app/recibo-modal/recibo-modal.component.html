@@ -1,0 +1,105 @@
+<body class="modal-style">
+    <div class="size-item">
+        <article class="receipt flex-column">
+            <div class="restaurant-header">
+                <p class="receipt-headers">La Jatata</p>
+                <p class="receipt-headers">4 Esquinas</p>
+                <p class="receipt-headers">Cochabamba, Cbba</p>
+                <p class="receipt-headers">70772977</p>
+                <p class="receipt-headers"></p>
+            </div>
+        </article>
+        <div class="receipt-details">
+        <table class="receipt-table">
+            <thead>
+                <tr>
+                    <td class="dotted-border" colspan="6"></td>
+                </tr>
+                <tr>
+                    <th class="table-header">Producto</th>
+                    <th class="table-header">Cantidad</th>
+                    <th class="table-header">SubTotal</th>
+                    <!--<th class="table-header">Editar</th>
+                    <th class="table-header">Borrar</th>-->
+                </tr>
+                <tr>
+                    <td class="dotted-border" colspan="6 "></td>
+                </tr>   
+            </thead>
+            <tbody>
+                <tr *ngFor="let or of reservation.products">
+                <td>{{ or.product_name }}</td>
+                <td>{{ or.quantity }}</td>
+                <td>{{ or.total }} Bs</td>
+                <!--<td><span (click)="editClicked(or)" class="material-symbols-outlined grow">edit</span></td>
+                <td><span (click)="deleteClicked(or)" class="material-symbols-outlined grow">delete</span></td>-->
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <div class="receipt-summary">
+        <table class="summary-table">
+            <tbody class="summary-table" id="total-summary">
+                <tr>
+                    <td class="dotted-border" colspan="5"></td>
+                </tr>
+                <tr>
+                    <td class="empty-border" colspan="5"></td>
+                </tr>
+            </tbody>  
+            <tbody class="summary-table" id="payment-summary">
+                <tr>
+                    <td class="right-row">Total:</td>
+                    <td class="right-row" id="subtotal-summary">{{reservation.total}} Bs</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="right-row">Monto Cancelado:</td>
+                    <td class="right-row" id="amount-paid">
+                        <p class="align-down" *ngIf="amountConfirmed">{{paidAmount}} Bs</p>
+                        <span *ngIf="!amountConfirmed" class="right-row filterButtonsDiv">
+                            <mat-form-field class="input-width">
+                                <input style="border:none" type="number" matInput [(ngModel)]="paidAmount" required>
+                            </mat-form-field>
+                            <button (click)="confirmAmount()" [disabled]="notEnough()" class="button-size" mat-mini-fab color="primary">
+                                <mat-icon class="icon-size">done</mat-icon>
+                            </button>
+                        </span>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="right-row" id="tip-change-title">Cambio:</td>
+                    <td class="right-row" id="tip-change-value">{{change}} Bs</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="right-row">Método de pago:</td>
+                    <td class="right-row" id="payment-type">
+                        <p class="align-down" *ngIf="methodConfirmed">{{paymentMethod}} </p>
+                        <span *ngIf="!methodConfirmed">
+                            <mat-form-field class="input-width">
+                                <mat-select [(ngModel)]="paymentMethod">
+                                    <mat-option *ngFor="let pay of ['Efectivo','Tarjeta','Transferencia']" [value]="pay">{{pay}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <button (click)="confirmMethod()" [disabled]="methodEmpty()" class="button-size" mat-mini-fab color="primary">
+                                <mat-icon class="icon-size">done</mat-icon>
+                            </button>
+                        </span>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="dotted-border" colspan="3"></td>
+                </tr>
+                <tr>
+                    <td class="empty-border" colspan="3"></td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <button (click)="printReceipt()" [disabled]="printEnabled()" mat-raised-button color="primary">Imprimir</button>
+    </div>
+    </div>  
+</body>

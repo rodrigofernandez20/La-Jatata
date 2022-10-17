@@ -38,6 +38,7 @@ import { ProductosComponent } from './productos/productos.component';
 import { NewproductModalComponent } from './newproduct-modal/newproduct-modal.component';
 import { WaitersComponent } from './waiters/waiters.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { ReciboModalComponent } from './recibo-modal/recibo-modal.component';
 //import { NgMaterialModule } from './ng-material/ng-material.module';
 
 @NgModule({
@@ -52,7 +53,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     AllreservasComponent,
     ProductosComponent,
     NewproductModalComponent,
-    WaitersComponent
+    WaitersComponent,
+    ReciboModalComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import { Reserva } from '../models/reserva.model';
+import { ReciboModalComponent } from '../recibo-modal/recibo-modal.component';
 import { ReservationService } from '../services/reservation.service';
 
 @Component({
@@ -69,10 +70,17 @@ export class AllreservasComponent implements OnInit {
     this.getReservas()
     //this.events.push(`${type}: ${event.value}`);
   }
-  
+  openRecibo(res:Reserva){
+    const ref =this.dialog.open(ReciboModalComponent,{ data: {
+      message:  res//or
+    }});
+  }
   ngOnInit(): void {
     //this.subscription = this.reservation.reserve.subscribe(reserve => this.reserve = reserve)
     this.getReservas();
+  }
+  totalEqualsZero(res:Reserva){
+    return res.total === 0;
   }
 
 }

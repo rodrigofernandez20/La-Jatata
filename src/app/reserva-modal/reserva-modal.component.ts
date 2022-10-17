@@ -97,7 +97,8 @@ export class ReservaModalComponent implements OnInit {
           'zone':form.value.zone,
           'notas':form.value.notas,
           'products':[],
-          'waiterName':''
+          'waiterName':'',
+          'total':0
       }
       console.log(res); 
       this.reservation.setReservation(res);
@@ -133,7 +134,8 @@ export class ReservaModalComponent implements OnInit {
         'num_people':form.value.num_people,
         'zone':form.value.zone,
         'notas':form.value.notas,
-        'products':[],'waiterName':''
+        'products':[],'waiterName':'',
+        'total':0
       }
       this.postReservation(res);
       this.dialogRef.close();
