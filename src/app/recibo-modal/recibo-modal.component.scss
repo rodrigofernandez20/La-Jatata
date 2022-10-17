@@ -32,12 +32,14 @@
     right: 0;
   } 
   .categories {
-    background-color: #333;
+    background-color: rgb(255, 255, 255);
     overflow: hidden;
     display: flex;
     height: fit-content;
     width: 100%;
     font-family: Aboreto;
+    color: black
+    ;
   }
   .table-header {
     font-family: 'Roboto Serif', serif;;  
@@ -200,6 +202,18 @@
 .grow {
   transition: all .2s ease-in-out;
 }
+
+.size-item {
+  background-color: #ddd;
+  color: black;
+}
+.right-row{
+  color: black;
+}
+.payment-type{
+  color: black;
+}
+
 /*tbody.summary-table td:nth-child(1) {
     width: 277px;
 }

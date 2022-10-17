@@ -88,7 +88,7 @@ export class ComandasComponent implements OnInit {
       this.postComanda();
       Swal.fire(
         '¡Creado exitosamente!',
-        'Se ha enviado la comandas correctamente',
+        'Se ha enviado la comanda correctamente',
         'success'
       )
       this.router.navigate(['/reservas']);
