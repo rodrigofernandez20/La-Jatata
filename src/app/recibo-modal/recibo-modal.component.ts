@@ -31,7 +31,11 @@ export class ReciboModalComponent implements OnInit {
     return this.paidAmount<this.reservation.total! || this.paidAmount === undefined
   }
   printReceipt(){
+    document.getElementById("pay-button")!.style.visibility = "hidden";
+    document.getElementById("print-button")!.style.visibility = "hidden";
     window.print();
+    document.getElementById("pay-button")!.style.visibility = "visible";
+    document.getElementById("print-button")!.style.visibility = "visible";
   }
   printEnabled(){
     return !this.amountConfirmed || !this.methodConfirmed

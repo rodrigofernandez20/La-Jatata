@@ -4,7 +4,7 @@
             <div class="restaurant-header">
                 <p class="receipt-headers">La Jatata</p>
                 <p class="receipt-headers">4 Esquinas</p>
-                <p class="receipt-headers">Cochabamba, Cbba</p>
+                <p class="receipt-headers">Tiquipaya Cbba</p>
                 <p class="receipt-headers">70772977</p>
                 <p class="receipt-headers"></p>
             </div>
@@ -49,11 +49,11 @@
             </tbody>  
             <tbody class="summary-table" id="payment-summary">
                 <tr>
-                    <td class="right-row">Total:</td>
-                    <td class="right-row" id="subtotal-summary">{{reservation.total}} Bs</td>
+                    <td class="right-row"> <strong> Total: </strong></td>
+                    <td class="right-row" id="subtotal-summary"><strong>{{reservation.total}} Bs </strong></td>
                     <td></td>
                 </tr>
-                <tr>
+                <!--<tr>
                     <td class="right-row">Método de pago:</td>
                     <td class="right-row" id="payment-type">
                         <p class="align-down" *ngIf="methodConfirmed">{{paymentMethod}} </p>
@@ -89,7 +89,7 @@
                     <td class="right-row" id="tip-change-title">Cambio:</td>
                     <td class="right-row" id="tip-change-value">{{change}} Bs</td>
                     <td></td>
-                </tr>
+                </tr>-->
             
                 <tr>
                     <td class="dotted-border" colspan="3"></td>
@@ -100,7 +100,8 @@
             </tbody>
         </table>
         <br>
-        <button (click)="printReceipt()" [disabled]="printEnabled()" mat-raised-button color="primary">Imprimir</button>
+        <button id="print-button" (click)="printReceipt()" mat-raised-button color="primary">Imprimir</button>
+        <button id="pay-button" mat-raised-button color="primary">Pagar</button><!--[disabled]="printEnabled()"-->
     </div>
     </div>  
 </body>

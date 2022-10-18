@@ -48,7 +48,33 @@ export class ComandasComponent implements OnInit {
       this.comanda.products = [];
       
    }
-
+  sendAllComandas(){
+    this.comanda.products! =[];
+    let orderComanda:ComandaOrder;
+    for (let i =0;i<this.reserva.products!.length;i++){
+      orderComanda = {
+        'product_id' : this.reserva.products![i].product_id,
+        'product_name': this.reserva.products![i].product_name,
+        'quantity': this.reserva.products![i].quantity,
+        'state': "Pendiente"
+      }
+      this.comanda.products!.push(orderComanda);
+      this.reserva.products![i].sentQuantity = this.reserva.products![i].quantity;
+      this.reserva.products![i].pendant = 0;
+    }
+  
+    /*or.sentQuantity!+=quantity;
+    or.pendant = or.quantity! - or.sentQuantity!;
+    this.comanda.products!.push(orderComanda);
+    console.log(this.comanda)*/
+  }
+  allComandasSent(){
+    let total = 0;
+    for (let i =0;i<this.reserva.products!.length;i++){
+      total += this.reserva.products![i].pendant!;
+    }
+    return total ===0
+  }
   ngOnInit(): void {
     this.subscription = this.reservation.reserve.subscribe(reserve => this.reserva = reserve);
     this.comanda.id_reserva = this.reserva._id;

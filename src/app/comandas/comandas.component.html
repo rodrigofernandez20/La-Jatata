@@ -19,7 +19,7 @@
               <div class="restaurant-header">
                   <p class="receipt-headers">La Jatata</p>
                   <p class="receipt-headers">4 Esquinas</p>
-                  <p class="receipt-headers">Cochabamba, Cbba</p>
+                  <p class="receipt-headers">Tiquipaya, Cbba</p>
                   <p class="receipt-headers">70772977</p>
                   <p class="receipt-headers"></p>
               </div>
@@ -64,6 +64,9 @@
                     </tr>
                 </tbody>  
             </table>
+        </div>
+        <div>
+          <button [disabled]="allComandasSent()" (click)="sendAllComandas()" class="all-btn" mat-flat-button color="warn">Mandar Todo</button>
         </div>
         </section>  
   
