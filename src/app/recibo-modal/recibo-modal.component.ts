@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Reserva } from '../models/reserva.model';
+import { Venta } from '../models/venta.model';
 
 @Component({
   selector: 'app-recibo-modal',
@@ -10,11 +11,16 @@ import { Reserva } from '../models/reserva.model';
 export class ReciboModalComponent implements OnInit {
 
   reservation : Reserva;
+  venta : Venta = {};
   amountConfirmed = false;
   methodConfirmed = false;
   change = 0.00;
   paidAmount!: number;
   paymentMethod = '';
+  paymentEnabled =false;
+  ventas_url="https://la-jatata.herokuapp.com/ventas"
+  reservas_url="https://la-jatata.herokuapp.com/reservas"
+
   constructor(private  dialogRef:  MatDialogRef<ReciboModalComponent>, @Inject(MAT_DIALOG_DATA) public  data:  any) { 
     this.reservation = data.message;
   }
@@ -45,5 +51,14 @@ export class ReciboModalComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-
+  payAccount(){
+    this.paymentEnabled = true;
+    /*this.venta ={
+      'date' : this.reservation.date,
+      'clientName' : this.reservation.clientName,
+      'total' : this.reservation.total,
+      //'paymentMethod' : this.reservation.paymentMethod,
+      'products' : this.reservation.products,
+    }*/
+  }
 }
