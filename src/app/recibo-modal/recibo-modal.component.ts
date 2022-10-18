@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 import { Reserva } from '../models/reserva.model';
 import { Venta } from '../models/venta.model';
+import { PaymentModalComponent } from '../payment-modal/payment-modal.component';
 
 @Component({
   selector: 'app-recibo-modal',
@@ -18,13 +20,25 @@ export class ReciboModalComponent implements OnInit {
   paidAmount!: number;
   paymentMethod = '';
   paymentEnabled =false;
-  ventas_url="https://la-jatata.herokuapp.com/ventas"
-  reservas_url="https://la-jatata.herokuapp.com/reservas"
 
-  constructor(private  dialogRef:  MatDialogRef<ReciboModalComponent>, @Inject(MAT_DIALOG_DATA) public  data:  any) { 
+  constructor(private  dialogRef:  MatDialogRef<ReciboModalComponent>, @Inject(MAT_DIALOG_DATA) public  data:  any,private  dialog:  MatDialog) { 
     this.reservation = data.message;
   }
-
+  goToPayment(){
+    const ref =this.dialog.open(PaymentModalComponent,{ data: {
+      message:  this.reservation//or
+    }});
+    ref.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        Swal.fire(
+          '¡Cancelado exitosamente!',
+          'Se ha procesado correctamente el pago',
+          'success'
+        )
+        this.dialogRef.close(true);
+      }
+    });
+  }
   confirmAmount(){
     this.amountConfirmed = true;
     this.change =  this.paidAmount -this.reservation.total!

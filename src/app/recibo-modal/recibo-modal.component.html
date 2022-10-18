@@ -53,44 +53,6 @@
                     <td class="right-row" id="subtotal-summary"><strong>{{reservation.total}} Bs </strong></td>
                     <td></td>
                 </tr>
-                <!--<tr>
-                    <td class="right-row">Método de pago:</td>
-                    <td class="right-row" id="payment-type">
-                        <p class="align-down" *ngIf="methodConfirmed">{{paymentMethod}} </p>
-                        <span *ngIf="!methodConfirmed">
-                            <mat-form-field class="input-width">
-                                <mat-select [(ngModel)]="paymentMethod">
-                                    <mat-option *ngFor="let pay of ['Efectivo','Tarjeta','Transferencia']" [value]="pay">{{pay}}</mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                            <button (click)="confirmMethod()" [disabled]="methodEmpty()" class="button-size" mat-mini-fab color="primary">
-                                <mat-icon class="icon-size">done</mat-icon>
-                            </button>
-                        </span>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="right-row">Monto Cancelado:</td>
-                    <td class="right-row" id="amount-paid">
-                        <p class="align-down" *ngIf="amountConfirmed">{{paidAmount}} Bs</p>
-                        <span *ngIf="!amountConfirmed" class="right-row filterButtonsDiv">
-                            <mat-form-field class="input-width">
-                                <input style="border:none" type="number" matInput [(ngModel)]="paidAmount" required>
-                            </mat-form-field>
-                            <button (click)="confirmAmount()" [disabled]="notEnough()" class="button-size" mat-mini-fab color="primary">
-                                <mat-icon class="icon-size">done</mat-icon>
-                            </button>
-                        </span>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="right-row" id="tip-change-title">Cambio:</td>
-                    <td class="right-row" id="tip-change-value">{{change}} Bs</td>
-                    <td></td>
-                </tr>-->
-            
                 <tr>
                     <td class="dotted-border" colspan="3"></td>
                 </tr>
@@ -101,7 +63,46 @@
         </table>
         <br>
         <button id="print-button" (click)="printReceipt()" mat-raised-button color="primary">Imprimir</button>
-        <button id="pay-button" mat-raised-button color="primary">Pagar</button><!--[disabled]="printEnabled()"-->
+        <button (click)="goToPayment()" id="pay-button" mat-raised-button color="primary">Pagar</button><!--[disabled]="printEnabled()"-->
+        <!--<span>
+            <tr>
+                <td class="right-row">Método de pago:</td>
+                <td class="right-row" id="payment-type">
+                    <p class="align-down" *ngIf="methodConfirmed">{{paymentMethod}} </p>
+                    <span *ngIf="!methodConfirmed">
+                        <mat-form-field class="input-width">
+                            <mat-select [(ngModel)]="paymentMethod">
+                                <mat-option *ngFor="let pay of ['Efectivo','Tarjeta','Transferencia']" [value]="pay">{{pay}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <button (click)="confirmMethod()" [disabled]="methodEmpty()" class="button-size" mat-mini-fab color="primary">
+                            <mat-icon class="icon-size">done</mat-icon>
+                        </button>
+                    </span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="right-row">Monto Cancelado:</td>
+                <td class="right-row" id="amount-paid">
+                    <p class="align-down" *ngIf="amountConfirmed">{{paidAmount}} Bs</p>
+                    <span *ngIf="!amountConfirmed" class="right-row filterButtonsDiv">
+                        <mat-form-field class="input-width">
+                            <input style="border:none" type="number" matInput [(ngModel)]="paidAmount" required>
+                        </mat-form-field>
+                        <button (click)="confirmAmount()" [disabled]="notEnough()" class="button-size" mat-mini-fab color="primary">
+                            <mat-icon class="icon-size">done</mat-icon>
+                        </button>
+                    </span>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="right-row" id="tip-change-title">Cambio:</td>
+                <td class="right-row" id="tip-change-value">{{change}} Bs</td>
+                <td></td>
+            </tr>
+        </span>-->
     </div>
     </div>   
 </body>

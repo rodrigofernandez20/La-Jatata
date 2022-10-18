@@ -52,15 +52,17 @@ export class ComandasComponent implements OnInit {
     this.comanda.products! =[];
     let orderComanda:ComandaOrder;
     for (let i =0;i<this.reserva.products!.length;i++){
-      orderComanda = {
-        'product_id' : this.reserva.products![i].product_id,
-        'product_name': this.reserva.products![i].product_name,
-        'quantity': this.reserva.products![i].quantity,
-        'state': "Pendiente"
-      }
-      this.comanda.products!.push(orderComanda);
-      this.reserva.products![i].sentQuantity = this.reserva.products![i].quantity;
-      this.reserva.products![i].pendant = 0;
+      if(this.reserva.products![i].pendant!>0){
+        orderComanda = {
+          'product_id' : this.reserva.products![i].product_id,
+          'product_name': this.reserva.products![i].product_name,
+          'quantity': this.reserva.products![i].quantity! - this.reserva.products![i].sentQuantity!,
+          'state': "Pendiente"
+        }
+        this.comanda.products!.push(orderComanda);
+        this.reserva.products![i].sentQuantity = this.reserva.products![i].quantity;
+        this.reserva.products![i].pendant = 0;
+      } 
     }
   
     /*or.sentQuantity!+=quantity;

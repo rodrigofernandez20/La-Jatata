@@ -39,6 +39,8 @@ import { NewproductModalComponent } from './newproduct-modal/newproduct-modal.co
 import { WaitersComponent } from './waiters/waiters.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ReciboModalComponent } from './recibo-modal/recibo-modal.component';
+import { PaymentModalComponent } from './payment-modal/payment-modal.component';
+import { MenuComponent } from './menu/menu.component';
 //import { NgMaterialModule } from './ng-material/ng-material.module';
 
 @NgModule({
@@ -54,7 +56,9 @@ import { ReciboModalComponent } from './recibo-modal/recibo-modal.component';
     ProductosComponent,
     NewproductModalComponent,
     WaitersComponent,
-    ReciboModalComponent
+    ReciboModalComponent,
+    PaymentModalComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

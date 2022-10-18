@@ -1,0 +1,45 @@
+<h1><strong>Total: {{total}} Bs</strong></h1>
+<span>
+    <tr>
+        <td class="right-row " >Método de pago:</td>
+        <td class="right-row" id="payment-type">
+            <!--<p class="align-down" *ngIf="methodConfirmed">{{paymentMethod}} </p>-->
+            <span class="margin" > <!--*ngIf="!methodConfirmed"-->
+                <mat-form-field class="input-width">
+                    <mat-select [(ngModel)]="paymentMethod" (ngModelChange)="paymentMethodChanged()">
+                        <mat-option *ngFor="let pay of ['Efectivo','Tarjeta','Transferencia']" [value]="pay">{{pay}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <!--<button (click)="confirmMethod()" [disabled]="methodEmpty()" class="button-size" mat-mini-fab color="primary">
+                    <mat-icon class="icon-size">done</mat-icon>
+                </button>-->
+            </span>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="right-row">Monto Cancelado:</td>
+        <td class="right-row" id="amount-paid">
+            <!--<p class="align-down" *ngIf="amountConfirmed">{{paidAmount}} Bs</p>-->
+            <span class="margin">
+                <mat-form-field class="input-width">
+                    <input style="border:none" type="number" matInput  [(ngModel)]="paidAmount" required>
+                </mat-form-field>
+                <!--<button (click)="confirmAmount()" [disabled]="notEnough()" class="button-size" mat-mini-fab color="primary">
+                    <mat-icon class="icon-size">done</mat-icon>
+                </button>-->
+            </span>
+        </td>
+        <td></td>
+    </tr>
+    <tr [hidden]="buttonNotEnabled()">
+        <td class="right-row" id="tip-change-title">Cambio:</td>
+        <td class="right-row" id="tip-change-value">{{paidAmount - total}} Bs</td>
+        <td></td>
+    </tr>
+</span>
+<br>
+<br>
+<div>
+    <button (click)="confirmSale()" [disabled]="buttonNotEnabled()" mat-raised-button color="primary">Confirmar</button>
+</div>

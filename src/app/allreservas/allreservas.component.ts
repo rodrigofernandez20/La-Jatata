@@ -74,6 +74,11 @@ export class AllreservasComponent implements OnInit {
     const ref =this.dialog.open(ReciboModalComponent,{ data: {
       message:  res//or
     }});
+    ref.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.getReservas();
+      }
+    });
   }
   ngOnInit(): void {
     //this.subscription = this.reservation.reserve.subscribe(reserve => this.reserve = reserve)
