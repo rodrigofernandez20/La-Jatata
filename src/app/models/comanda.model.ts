@@ -6,7 +6,10 @@ export class Comanda {
     id_reserva?: Number;
     products?: ComandaOrder[];
     status?: String;
-    created_at?: Time;
+    createdAt?: Date;
     notes?:String;
+    zone?: String;
+    clientName?: String;
+    waiterName?: String;
 }
 

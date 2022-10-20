@@ -41,7 +41,12 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { ReciboModalComponent } from './recibo-modal/recibo-modal.component';
 import { PaymentModalComponent } from './payment-modal/payment-modal.component';
 import { MenuComponent } from './menu/menu.component';
+import { CocinaComponent } from './cocina/cocina.component';
+import { ComandaService } from './comanda.service';
 //import { NgMaterialModule } from './ng-material/ng-material.module';
+import { environment } from "../environments/environment";
+import { initializeApp } from "firebase/app";
+initializeApp(environment.firebase);
 
 @NgModule({
   declarations: [
@@ -58,7 +63,8 @@ import { MenuComponent } from './menu/menu.component';
     WaitersComponent,
     ReciboModalComponent,
     PaymentModalComponent,
-    MenuComponent
+    MenuComponent,
+    CocinaComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +77,7 @@ import { MenuComponent } from './menu/menu.component';
     BrowserAnimationsModule,
     MatDialogModule,CommonModule,MatSortModule,MatTableModule,MatRadioModule,MatIconModule,MatSelectModule,MatNativeDateModule, MatInputModule,MatDatepickerModule, MatButtonModule,CdkAccordionModule,MatExpansionModule, MatCardModule, MatFormFieldModule,FormsModule,MatSnackBarModule,MatDividerModule
   ],
-  providers: [],
+  providers: [ComandaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

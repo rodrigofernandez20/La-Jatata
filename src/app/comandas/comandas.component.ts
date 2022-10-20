@@ -14,6 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { ComandaService } from '../comanda.service';
 
 @Component({
   selector: 'app-comandas',
@@ -39,10 +40,17 @@ export class ComandasComponent implements OnInit {
     'quantity': 3
   }
 ] 
-
-  constructor(private  router:  Router,public http: HttpClient,private reservation: ReservationService,private  dialog:  MatDialog,private snackBar: MatSnackBar) {
+  /*someMethodThatPerformsUserLogin() {
+  // Some code 
+  // .....
+  // After the user has logged in, emit the behavior subject changes.
+  this.comandaService.isComandaBeingCalled.next(true);
+  this.router.navigate(['/cocina'])
+  }*/
+  constructor(private comandaService:ComandaService, private  router:  Router,public http: HttpClient,private reservation: ReservationService,private  dialog:  MatDialog,private snackBar: MatSnackBar) {
       /*this.order = receivedOrder.getOrder()
       console.log(this.order)*/
+      //this.someMethodThatPerformsUserLogin()
       this.comanda.id_reserva = this.reserva._id;
       this.comanda.status = "Pendiente"
       this.comanda.products = [];
@@ -119,6 +127,22 @@ export class ComandasComponent implements OnInit {
         'Se ha enviado la comanda correctamente',
         'success'
       )
+      //Prueba notificacion
+      const httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type':  'application/json',
+            'Authorization':'key=AAAAQ3zNzwQ:APA91bHcMyyjgDskJcFPoSWs3-JBaMnbDFTLKGvmqODYChceIsJKDflQH_1M362LHE6euTwJyt5var8lWcwR0uvlx6K40GQZI5E1Zh9Ttcoz29ll02byuEltM4sedPOEF0OHq1HJeyfZ'
+        })
+      };
+      const prueba ={
+        "notification": {
+            "title": "First Notification",
+            "body": "Prueba"
+        },
+        "to":"eO9eiK0Wxf4NINhU4oHpwq:APA91bHwaaCkfxa73mbP2h-hvUw3lr1ynyiDMidaGR5b9GcqbQqIyy7LtWbVAM2fG1keqGMh4-_N528EAab7tEeE2kKHPfdGqSdekdsYhE0sNEAUfEppy3tDmU3V9D91oS1USKFk2Hgb"
+      }
+      this.http.post("https://fcm.googleapis.com/fcm/send", JSON.stringify(prueba), httpOptions)
+            .subscribe(data => console.log(data));
       this.router.navigate(['/reservas']);
     }
     else{
