@@ -1,11 +1,14 @@
 import { Time } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ComandaService } from '../comanda.service';
 import { Comanda } from '../models/comanda.model';
 import { Reserva } from '../models/reserva.model';
 import { environment } from "../../environments/environment";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import { Token } from '@angular/compiler';
+import { TokenModel } from '../models/token.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-cocina',
@@ -18,8 +21,9 @@ export class CocinaComponent implements OnInit {
   reservas_url = 'https://la-jatata.herokuapp.com/reservas'
   isComandaBeingCalled:boolean=false;
   message:any = null;
+  tokens : string[]=[];
 
-  constructor(public http: HttpClient, private comandaService:ComandaService) { 
+  constructor(public http: HttpClient, private comandaService:ComandaService,private snackBar: MatSnackBar) { 
     this.comandaService.isComandaBeingCalled.subscribe( value => {
       this.isComandaBeingCalled = value;
   });
@@ -35,6 +39,54 @@ export class CocinaComponent implements OnInit {
     console.log('Error subscribing to topic:', error);
   });
   }*/
+  getAllTokens(currentToken:string){
+    console.log(currentToken)
+    /*this.http.get<TokenModel[]>("http://localhost:3000/tokens").subscribe(data =>{ 
+      const allItems = Object.values(data);
+      for(let i =0; i<allItems.length;i++){
+        this.tokens.push(allItems[i].token!)
+      }
+      if(this.tokens.indexOf(currentToken) ===-1){
+        this.postCurrentToken(currentToken)
+       }
+      console.log(this.tokens);
+    });*/
+  }
+  postCurrentToken(currentToken:string){
+    const httpOptions = {
+      headers: new HttpHeaders({
+          'Content-Type':  'application/json'
+      })
+    };
+    const httpOptionsForFirebase = {
+      headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': 'true',
+          'Access-Control-Allow-Headers': 'Content-Type',
+          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
+          'Authorization': 'key=AAAAQ3zNzwQ:APA91bHcMyyjgDskJcFPoSWs3-JBaMnbDFTLKGvmqODYChceIsJKDflQH_1M362LHE6euTwJyt5var8lWcwR0uvlx6K40GQZI5E1Zh9Ttcoz29ll02byuEltM4sedPOEF0OHq1HJeyfZ',
+          'project_id': '289856671492'
+      })
+    };
+    const sentToken = {
+      'token':currentToken
+    }
+    const firebaseGroup ={
+      "operation": "add",
+      "notification_key_name": "comanda",
+      "notification_key": "APA91bGy4YghJ6n0SMNfiidhBaYzGnDLfj66kyBN_5_xPV4BY9Ad_Ndys2NvZ-Km8meJBnz7uLBxruW9cDNC2nKlQALjNcUHGpSK7L73XiqzISSZ_n266Is",
+      "registration_ids": [currentToken]
+    }
+    console.log(JSON.stringify(sentToken))
+    this.tokens.push(currentToken);
+    //CORS TROUBLE, LEARN HOW TO FIX
+    //this.http.post("https://fcm.googleapis.com/fcm/notification", JSON.stringify(firebaseGroup), httpOptionsForFirebase)
+          //.subscribe(data => console.log(data));
+    //this.http.post("http://localhost:3000/tokens", JSON.stringify(sentToken), httpOptions)
+          //.subscribe(data => console.log(data));
+    
+  }
   requestPermission() {
     const messaging = getMessaging();
     getToken(messaging, 
@@ -43,6 +95,10 @@ export class CocinaComponent implements OnInit {
          if (currentToken) {
            console.log("Hurraaa!!! we got the token.....");
            console.log(currentToken);
+           this.getAllTokens(currentToken);
+           /*if(this.tokens.indexOf(currentToken) ===-1){
+            this.postCurrentToken(currentToken)
+           }*/
          } else {
            console.log('No registration token available. Request permission to generate one.');
          }
@@ -56,9 +112,16 @@ export class CocinaComponent implements OnInit {
       console.log('Message received. ', payload);
       this.message=payload;
       this.getComandas();
+      this.playAudio()
+      const snack = this.snackBar.open('Se ha agregado una nueva comanda',"Cerrar");
     });
   }
-
+  playAudio(){
+    let audio = new Audio();
+    audio.src = "../../assets/audio/alert.wav";
+    audio.load();
+    audio.play();
+  }
   ngOnInit(): void {
     this.getComandas();
     this.requestPermission();

@@ -135,11 +135,11 @@ export class ComandasComponent implements OnInit {
         })
       };
       const prueba ={
-        "notification": {
+        "notification": { 
             "title": "First Notification",
             "body": "Prueba"
         },
-        "to":"eO9eiK0Wxf4NINhU4oHpwq:APA91bHwaaCkfxa73mbP2h-hvUw3lr1ynyiDMidaGR5b9GcqbQqIyy7LtWbVAM2fG1keqGMh4-_N528EAab7tEeE2kKHPfdGqSdekdsYhE0sNEAUfEppy3tDmU3V9D91oS1USKFk2Hgb"
+        "to":"APA91bGy4YghJ6n0SMNfiidhBaYzGnDLfj66kyBN_5_xPV4BY9Ad_Ndys2NvZ-Km8meJBnz7uLBxruW9cDNC2nKlQALjNcUHGpSK7L73XiqzISSZ_n266Is"
       }
       this.http.post("https://fcm.googleapis.com/fcm/send", JSON.stringify(prueba), httpOptions)
             .subscribe(data => console.log(data));
