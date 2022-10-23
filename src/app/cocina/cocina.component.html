@@ -1,17 +1,11 @@
-<mat-toolbar color="primary">
+<!--<mat-toolbar color="primary">
     <mat-toolbar-row >
       <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
       </button>
     </mat-toolbar-row>
-  </mat-toolbar>
-  <!--<div *ngIf="message;">
-    <h1>{{ message.notification.title }}</h1>
-    <h2>{{ message.notification.body }}</h2>
-  </div>
-  <div *ngIf="!message;">
-    No Message Arrived
-  </div>-->
+  </mat-toolbar>-->
+ 
 <div>
     <p *ngIf="isComandaBeingCalled">Holaaa</p> 
     <div class="flex-container">
@@ -23,12 +17,18 @@
       <mat-divider inset class="divider"></mat-divider>
       <br>
       <mat-card-actions *ngFor="let pro of comanda.products">
+        <span >
         <mat-card-content class="quantity-name"> {{pro.quantity}}   {{pro.product_name}}</mat-card-content>
         <!--<button class="button-comanda" mat-flat-button color="warn">{{pro.state}}</button>-->
-        <button class="button-comanda" mat-flat-button color="warn">{{pro.state}}</button>
+        <button [ngStyle]="{'background-color':getColor(pro.state!)}" class="button-comanda" mat-raised-button color="primary" [matMenuTriggerFor]="menu">{{pro.state}}</button>
+              <mat-menu #menu="matMenu">
+                <button (click)="changeComandaItemState(pro,state,comanda)" *ngFor="let state of states" mat-menu-item>{{state}}</button>
+              </mat-menu>
+      </span>
+        
       </mat-card-actions>
       <mat-divider inset></mat-divider>
-      <mat-card-content>
+      <mat-card-content>  
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Notas (Opcional)</mat-label>
           <textarea readonly matInput  [(ngModel)]="comanda.notes"></textarea>

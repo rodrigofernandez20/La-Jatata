@@ -9,11 +9,20 @@ import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import { Token } from '@angular/compiler';
 import { TokenModel } from '../models/token.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ComandaOrder } from '../models/comandaorder.model';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-cocina',
   templateUrl: './cocina.component.html',
-  styleUrls: ['./cocina.component.scss']
+  styleUrls: ['./cocina.component.scss'],
+  animations:[
+    trigger('fade',[
+      transition('* => void',[
+        animate(2000,style({opacity:0}))
+      ])
+    ])
+  ]
 })
 export class CocinaComponent implements OnInit {
   comandas: Comanda[] = [];
@@ -22,6 +31,7 @@ export class CocinaComponent implements OnInit {
   isComandaBeingCalled:boolean=false;
   message:any = null;
   tokens : string[]=[];
+  states =['Pendiente',"Preparando", "Entregado"]
 
   constructor(public http: HttpClient, private comandaService:ComandaService,private snackBar: MatSnackBar) { 
     this.comandaService.isComandaBeingCalled.subscribe( value => {
@@ -126,9 +136,11 @@ export class CocinaComponent implements OnInit {
     this.getComandas();
     this.requestPermission();
     this.listen();
+    //console.log()
   }
   getComandas(){
     let date = new Date();
+    console.log(date);
     //date.setHours(0, 0, 0, 0)
     let dateurl = this.comandas_url + '/date?date=' + date.toISOString()
     console.log(dateurl)
@@ -167,6 +179,52 @@ export class CocinaComponent implements OnInit {
       console.log(reserva);
     });
     return reserva;
+  }
+  changeComandaItemState(pro:ComandaOrder,state:string,comand:Comanda){
+    pro.state =state;
+    const patch_url = this.comandas_url + '/' + comand._id;
+    const products = {'products': comand.products}
+    //console.log(patch_url)
+    //console.log(comand)
+    //console.log(JSON.stringify(products))
+    this.http.patch(patch_url,products)
+    .subscribe(data => console.log(data));
+    if(this.isComandaDone(comand)){
+      this.patchFinishedComanda(comand._id!)
+    }
+  }
+
+  patchFinishedComanda(_id:Number){
+    const finishUrl = this.comandas_url + '/completed/' + _id;
+    const status = {'status': "Entregado"}
+    this.http.patch(finishUrl,status)
+    .subscribe(() => this.getComandas());
+    
+  }
+  isComandaDone(comand:Comanda){
+    let isDone = true;
+    for (let i =0;i<comand.products!.length;i++){
+      if(comand.products![i].state!="Entregado"){
+        isDone = false;
+        return isDone;
+      }
+    }
+    return isDone;
+  }
+  getColor(state:string) { 
+    let color ='';
+    switch (state) {
+      case 'Entregado':
+        color = '#00e676';
+        break;
+      case 'Preparando':
+        color = '#F3EA5F';
+        break;
+      case 'Pendiente':
+        color= '#F37A5F';
+        break;
+    }
+    return color;
   }
 
 }

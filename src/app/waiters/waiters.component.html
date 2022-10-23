@@ -1,8 +1,5 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row >
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
     <mat-form-field  class="date-input full-width center" appearance="fill">
       <input (dateChange)="dateChanged('change', $event)" class="date-picker" [(ngModel)]='date' matInput [matDatepicker]="picker">
       <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>

@@ -46,6 +46,10 @@ import { ComandaService } from './comanda.service';
 //import { NgMaterialModule } from './ng-material/ng-material.module';
 import { environment } from "../environments/environment";
 import { initializeApp } from "firebase/app";
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+
+
 initializeApp(environment.firebase);
 
 @NgModule({
@@ -68,7 +72,9 @@ initializeApp(environment.firebase);
   ],
   imports: [
     BrowserModule,
+    MatListModule,
     ReactiveFormsModule,
+    MatSidenavModule,
     RouterModule,
     MatToolbarModule,
     AppRoutingModule,
