@@ -11,5 +11,6 @@ export class Comanda {
     zone?: String;
     clientName?: String;
     waiterName?: String;
+    animation?:String;
 }
 

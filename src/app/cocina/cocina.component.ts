@@ -10,17 +10,33 @@ import { Token } from '@angular/compiler';
 import { TokenModel } from '../models/token.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ComandaOrder } from '../models/comandaorder.model';
-import { animate, style, transition, trigger } from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-cocina',
   templateUrl: './cocina.component.html',
   styleUrls: ['./cocina.component.scss'],
   animations:[
-    trigger('fade',[
-      transition('* => void',[
-        animate(2000,style({opacity:0}))
-      ])
+    trigger("actionAnimation", [
+      state(
+        "orig",
+        style({
+          transform: "scale(1)",
+          opacity: 1
+        })
+      ),
+      state(
+        "small",
+        style({
+          //transform: "scale(0,75)",
+          opacity: 0.0
+        })
+      ),
+      /*transition(':leave', [
+        style({ opacity: 1 }),
+        animate(1000, style({ opacity: 0 }))
+      ])*/
+      transition("* => *", animate("1000ms 1s ease-out"))
     ])
   ]
 })
@@ -146,6 +162,10 @@ export class CocinaComponent implements OnInit {
     console.log(dateurl)
     this.http.get<Comanda[]>(dateurl).subscribe(data =>{ 
       this.comandas = Object.values(data);
+      this.comandas = this.comandas.map((comanda) => {
+        comanda.animation = 'orig';
+        return comanda;
+      });
       this.saveInformation();
       console.log(this.comandas);
     });
@@ -190,7 +210,8 @@ export class CocinaComponent implements OnInit {
     this.http.patch(patch_url,products)
     .subscribe(data => console.log(data));
     if(this.isComandaDone(comand)){
-      this.patchFinishedComanda(comand._id!)
+      this.patchFinishedComanda(comand._id!);
+      comand.animation = 'small'
     }
   }
 

@@ -9,7 +9,7 @@
 <div>
     <p *ngIf="isComandaBeingCalled">Holaaa</p> 
     <div class="flex-container">
-    <mat-card *ngFor="let comanda of comandas" class="comanda-card">
+    <mat-card *ngFor="let comanda of comandas" class="comanda-card" [@actionAnimation]="comanda.animation">
       <mat-card-title class="title">Mesero: {{comanda.waiterName}}</mat-card-title>
       <mat-card-subtitle class="subtitle">Cliente: {{comanda.clientName}}</mat-card-subtitle>
       <mat-card-subtitle class="subtitle">Zona: {{comanda.zone}}</mat-card-subtitle>
