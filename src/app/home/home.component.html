@@ -32,7 +32,7 @@
       </div>
     </div>
   </div>
-  <div class="card-container">
+  <div *ngIf="menuExists()" class="card-container">
     <mat-card *ngFor="let item of menu.products">
       <mat-card-title class="center-mat"><strong>{{item.product_name}}</strong></mat-card-title>
       <mat-divider></mat-divider>

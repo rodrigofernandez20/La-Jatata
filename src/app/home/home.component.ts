@@ -44,6 +44,10 @@ export class HomeComponent implements OnInit {
       //this.fillReservated();
     });
   }
+  menuExists(){
+    return this.menu != undefined
+    //console.log(this.menu)
+  }
   getReservations(){
     let url = this.reservations_url + '?date='+ this.date
     this.http.get<Reserva[]>(url).subscribe(data =>{ 
@@ -53,9 +57,11 @@ export class HomeComponent implements OnInit {
   }
   fillReservated(){
     console.log(this.reservations)
-    for(let i =0;i<this.menu.products!.length;i++){
-      this.menu.products![i].reservated= this.getReservated(this.menu.products![i].product_id!)
-      this.menu.products![i].delivered= this.getDelivered(this.menu.products![i].product_id!)
+    if(this.menu != undefined){
+      for(let i =0;i<this.menu.products!.length;i++){
+        this.menu.products![i].reservated= this.getReservated(this.menu.products![i].product_id!)
+        this.menu.products![i].delivered= this.getDelivered(this.menu.products![i].product_id!)
+      }
     }
   }
   getReservated(product_id:number){
