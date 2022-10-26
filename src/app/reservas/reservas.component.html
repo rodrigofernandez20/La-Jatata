@@ -108,7 +108,7 @@
             <a (click)="changeCategory()">Tragos</a>
             <a (click)="changeCategory()">Lacteos</a>-->
           </div>
-          <mat-card class="menu-item" *ngFor="let pro of products" (click)="openDialog(pro)">
+          <mat-card [ngStyle]="{'background-color':getColor(pro._id!)}" class="menu-item" *ngFor="let pro of products" (click)="openDialog(pro)">
             {{pro.name}}
           </mat-card>  
           </div>

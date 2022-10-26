@@ -1,0 +1,72 @@
+<head>
+  <base target="_top">
+  <title>La Jatata</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--Borrar-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<div class="topnav">
+    <!--<a class="split" (click)="goToComandasPage()">Mandar Comanda</a>-->
+    <mat-form-field  class="date-input full-width center" appearance="fill">
+      <input [(ngModel)]='date' (ngModelChange)="dateChanged()" class="date-picker"  matInput [matDatepicker]="picker"> <!--[(ngModel)]='date'-->
+      <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <div class="topnav-right">
+      <a class="active" (click)="saveMenu()">Guardar cambios</a>
+    </div>
+      <!--<input (change)="dateChanged()"[(ngModel)]='date' class="date-picker" type="date"> -->
+      <!--<a class="split">Guardar</a>-->
+  </div>
+  <div class="container">
+    <!--<div class="flex-item"> 1</div>-->
+    <section class="flex-item">
+     
+      <div class="receipt-details">
+        <table class="receipt-table">
+            <thead>
+              <tr>
+                  <td class="dotted-border" colspan="8"></td>
+              </tr>
+              <tr>
+                  <th class="table-header">Producto</th>
+                  <th class="table-header">Preparado</th>
+                  <th class="table-header">Reservado</th>
+                  <th class="table-header">Restante</th>
+                  <th class="table-header">Entregado</th>
+                  <th class="table-header">Editar</th>
+                  <th class="table-header">Borrar</th>
+              </tr>
+              <tr>
+                  <td class="dotted-border" colspan="8 "></td>
+              </tr>   
+            </thead>
+            <tbody>
+              <tr *ngFor="let pro of menu.products">
+                <td>{{ pro.product_name }}</td>
+                <td>{{ pro.prepared }}</td>
+                <td>{{ pro.reservated }}</td>
+                <td>{{ pro.prepared! - pro.reservated! }}</td>
+                <td>{{ pro.delivered }}</td>
+                <td><span (click)="editClicked(pro)" class="material-symbols-outlined grow">edit</span></td>
+                <td><span (click)="deleteClicked(pro)" class="material-symbols-outlined grow">delete</span></td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+      
+    </section>  
+
+    <div id="menu-container" class="flex-item">
+      <div class="categories">
+        <a *ngFor="let cat of categories" [ngClass]="{'active': cat.active}" (click)="changeCategory(cat)">{{cat.name}}</a>
+        <!--<a class="active" (click)="changeCategory()">Platos</a>
+        <a (click)="changeCategory()">Bebidas</a>
+        <a (click)="changeCategory()">Tragos</a>
+        <a (click)="changeCategory()">Lacteos</a>-->
+      </div>
+      <mat-card class="menu-item" *ngFor="let pro of products" (click)="openDialog(pro)">
+        {{pro.name}}
+      </mat-card>  
+      </div>
+    </div>

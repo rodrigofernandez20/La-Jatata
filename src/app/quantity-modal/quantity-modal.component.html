@@ -9,11 +9,11 @@
         <button type="button" (click)="minus()">
             <i class="material-icons">remove</i>
         </button>
-        <input type="text" [value]="quantity" class="quantity-input" size="3" name="cant" (change)="valuechange($event)">
+        <input type="number" [value]="quantity" class="quantity-input" size="3" name="cant" (change)="valuechange($event)">
         <button type="button" (click)="plus()">
             <i class="material-icons">add</i>
         </button>
-    </div>
+    </div>  
     <div class="buttons-container">
         <mat-dialog-actions>
             <button  mat-raised-button (click)="closePopUp()" >Cerrar</button>

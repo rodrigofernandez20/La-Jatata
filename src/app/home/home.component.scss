@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+*{
+  font-family: Montserrat;
+}
 .bg-img {
   /* The image used */
   background-color: rgb(120, 120, 120);
@@ -31,7 +34,49 @@ text-decoration: none;
 font-size: 17px;
 font-family: Aboreto;
 }
+mat-divider{
+  border-top-width: 3px;
+  border-top-color: rgb(240, 229, 229);
+  border-top-style: dashed;
+}
+.left{
+  border-right: solid;
+  border-width: 1px;
+}
+.upper{
+  border-bottom: solid;
+  border-width: 1px;
+}
+mat-card{
+  width: 350px;
+  margin: 5px 5px 5px 5px;
+  background-color: #058154;
+  padding-top: auto;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  //padding:0 0 0 0;
+}
+.card-container {
+  display:flex;
+  flex-wrap: wrap;
+}
+@media screen and (max-width: 600px) {
 
+  mat-card{
+    margin: 5px auto 5px auto;
+  }
+}
+.center-mat{
+  text-align: center;
+}
+.upper-margin{
+  margin-top: 20px;
+}
+.content-container{
+  display: grid;
+  margin-top: 5px;
+}
 .example-toolbar a:hover {
 background-color: #ddd;
 color: black;

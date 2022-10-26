@@ -209,7 +209,7 @@ export class ComandasComponent implements OnInit {
         message:or,
         quantity: 1,
         maxquantity: or.pendant
-        }});
+        }}); 
 
         ref.afterClosed().subscribe((quantity: number) => {
           if (quantity !=undefined) {

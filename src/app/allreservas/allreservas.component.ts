@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import { Reserva } from '../models/reserva.model';
@@ -21,7 +21,11 @@ export class AllreservasComponent implements OnInit {
   url = 'https://la-jatata.herokuapp.com/reservas'
   subscription: Subscription = new Subscription;
 
-  constructor(public http: HttpClient,private  dialog:  MatDialog,private reservation:ReservationService,private  router:  Router) {
+  constructor(route:ActivatedRoute,public http: HttpClient,private  dialog:  MatDialog,private reservation:ReservationService,private  router:  Router) {
+    route.params.subscribe(val => {
+      this.getReservas();
+    });
+    //this.router.onSameUrlNavigation='reload'
     //this.getReservas();
    }
    getReservas(){

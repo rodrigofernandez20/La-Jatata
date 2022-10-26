@@ -32,6 +32,40 @@
       </div>
     </div>
   </div>
+  <div class="card-container">
+    <mat-card *ngFor="let item of menu.products">
+      <mat-card-title class="center-mat"><strong>{{item.product_name}}</strong></mat-card-title>
+      <mat-divider></mat-divider>
+      <mat-card-content class="content-container">
+        <mat-grid-list cols="2" rowHeight="2:1">
+          <mat-grid-tile class="left upper">
+            <div>
+              <h1 class="center-mat upper-margin"> <strong>Preparado</strong></h1>
+              <h1 class="center-mat">{{item.prepared}}</h1>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile class="upper">
+            <div>
+              <h1 class="center-mat upper-margin"> <strong>Reservado</strong></h1>
+              <h1 class="center-mat" >{{item.reservated}}</h1>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile class="left">
+            <div>
+              <h1 class="center-mat upper-margin"> <strong>Entregado</strong></h1>
+              <h1 class="center-mat">{{item.delivered}}</h1>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile >
+            <div>
+              <h1 class="center-mat upper-margin"> <strong>Disponible</strong></h1>
+              <h1 class="center-mat" [ngStyle]="{'color':getColor(item.prepared! - item.reservated!)}">{{item.prepared! - item.reservated!}}</h1>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
   <!--style="margin: -8px;" fixedTopGap="56"-->
  <!-- <p>Bodyyy</p>-->
 </body>

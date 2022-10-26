@@ -40,7 +40,6 @@ import { WaitersComponent } from './waiters/waiters.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ReciboModalComponent } from './recibo-modal/recibo-modal.component';
 import { PaymentModalComponent } from './payment-modal/payment-modal.component';
-import { MenuComponent } from './menu/menu.component';
 import { CocinaComponent } from './cocina/cocina.component';
 import { ComandaService } from './comanda.service';
 //import { NgMaterialModule } from './ng-material/ng-material.module';
@@ -48,6 +47,8 @@ import { environment } from "../environments/environment";
 import { initializeApp } from "firebase/app";
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import { MenusComponent } from './menus/menus.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 initializeApp(environment.firebase);
@@ -67,12 +68,13 @@ initializeApp(environment.firebase);
     WaitersComponent,
     ReciboModalComponent,
     PaymentModalComponent,
-    MenuComponent,
-    CocinaComponent
+    CocinaComponent,
+    MenusComponent
   ],
   imports: [
     BrowserModule,
     MatListModule,
+    MatGridListModule,
     ReactiveFormsModule,
     MatSidenavModule,
     RouterModule,

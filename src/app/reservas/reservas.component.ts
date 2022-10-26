@@ -14,6 +14,7 @@ import { Reserva } from '../models/reserva.model';
 import { ReservationService } from '../services/reservation.service';
 import { ReservaModalComponent } from '../reserva-modal/reserva-modal.component';
 import Swal from 'sweetalert2';
+import { Menu } from '../models/menu.model';
 
 
 @Component({
@@ -46,39 +47,83 @@ export class ReservasComponent implements OnInit {
   //reservation: Reserva ={};
   subscription: Subscription = new Subscription;
   reserve:Reserva = new Reserva;
+  reservations :Reserva[]=[];
   products: Product[] = []; // Guarda productos por categoria
   allProducts:Product[] = []; // Guarda todos los productos
-  order: Order[] = []/*[{
-    'id':1,
-    'product':'Sopa de Mani',
-    'quantity':6,
-    'price': 15,
-    'subtotal': 90
-  },
-  {
-    'id':2,
-    'product':'Lechon',
-    'quantity':2,
-    'price': 55,
-    'subtotal': 110
-  }
-]*/
+  order: Order[] = [];
+  menu: Menu={}
  
   products_url = 'https://la-jatata.herokuapp.com/products'
   reservations_url ='https://la-jatata.herokuapp.com/reservas'
+  menu_url = 'https://la-jatata.herokuapp.com/menu'
   category: string='PLATOS';
 
   constructor(private reservation:ReservationService,private sentOrder:OrderService, public http: HttpClient,private  dialog:  MatDialog, private  router:  Router,private snackBar: MatSnackBar){
     this.getProducts();
-    
+  
   } 
+  getMenu(){
+    //let date:Date = new Date();
+    //date.setHours(0, 0, 0, 0);
+    //const dateName = this.reserve.date!.toISOString()
+    let dateurl = this.menu_url + '?date=' + this.reserve.date
+    console.log(dateurl)
+    this.http.get<Menu[]>(dateurl).subscribe(data =>{ 
+        this.menu = data[0];
+        console.log(this.menu);
+    });
+  }
   ngOnInit(): void {
     //this.reserve.total = 0;
     this.subscription = this.reservation.reserve.subscribe(reserve => this.reserve = reserve);
     this.order = this.reserve.products!; 
+    this.getMenu();
+    this.getReservations();
     //console.log(this.reserve);
-    throw new Error('Method not implemented.');
-    
+   // throw new Error('Method not implemented.');
+  }
+  getColor(id:number) { 
+    let color ='';
+    let cant = -1;
+    if(this.menu!= undefined){
+        let item = this.menu.products!.find(({product_id}) =>product_id === id)
+        if(item!=undefined){
+          cant = item.prepared! - item.reservated!
+        }
+    }
+    if(cant==-1 || cant>15){
+      color = '#036C02';
+    }
+    else if(cant<=15 && cant>0){
+      color = '#FFC300';
+    }
+    else if (cant ===0){
+      color= '#F37A5F';
+    }
+    return color;
+  }
+  getReservations(){
+    let url = this.reservations_url + '?date='+ this.reserve.date
+    this.http.get<Reserva[]>(url).subscribe(data =>{ 
+      this.reservations = Object.values(data);
+      this.fillReservated();
+    });
+  }
+  fillReservated(){
+    for(let i =0;i<this.menu.products!.length;i++){
+      this.menu.products![i].reservated= this.getReservated(this.menu.products![i].product_id!)
+    }
+  }
+  getReservated(product_id:number){
+    let cantReservated = 0;
+    for(let i =0;i<this.reservations.length;i++){
+      for(let j =0;j<this.reservations[i].products!.length;j++){
+        if(this.reservations[i].products![j].product_id === product_id){
+          cantReservated+= this.reservations[i].products![j].quantity!
+        }
+      }
+    }
+    return cantReservated;
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
@@ -110,7 +155,8 @@ export class ReservasComponent implements OnInit {
       message,
       'success'
     )
-    this.router.navigate(['/reservas'])
+    //this.router.navigate(['/reservas']);
+    this.router.navigateByUrl('/reservas');
     /*'product_id':this.order[i].product_id, //Acomodar ID
         "product_name":this.order[i].product_name,
         "quantity":this.order[i].quantity,
@@ -215,10 +261,15 @@ export class ReservasComponent implements OnInit {
       const snack = this.snackBar.open('Este Producto ya se encuentra en la reserva',"Cerrar");
     } 
     else{
-    //Chequear si el item ya existe, si es que ya existe enviar un mensaje
+      if(this.noProductLeft(pro._id!)){
+        const snack = this.snackBar.open('Se ha agotado este producto',"Cerrar");
+      }
+      else{
+        let max =this.getAvailableQuantity(pro._id!);
       const ref =this.dialog.open(QuantityModalComponent,{ data: {
         message:  pro,
-        quantity: 1
+        quantity: 1,
+        maxquantity:max
         }});
       const sub = ref.componentInstance.onAdd.subscribe((data) => {
         console.log(data);
@@ -233,12 +284,37 @@ export class ReservasComponent implements OnInit {
         this.reserve.total! +=this.actualPrice*data;
       });
     }
+    }
+  }
+  getAvailableQuantity(id: number){
+    let quantity = 100;
+    if(this.menu!=undefined){
+      let menuItem =this.menu.products!.find(({product_id})=>product_id ===id)
+      if(menuItem!=undefined){
+        quantity = menuItem!.prepared! -menuItem!.reservated!;
+      }
+    }
+    return quantity;
+  }
+  noProductLeft(id: number){
+    let isZero = false;
+    if(this.menu!=undefined){
+      let menuItem =this.menu.products!.find(({product_id})=>product_id ===id)
+      if(menuItem!=undefined){
+        if(menuItem!.prepared! -menuItem!.reservated! ===0){
+          isZero = true;
+        }
+      }
+    }
+    return isZero;
   }
   //Cuando se presiona el boton de editar
   editClicked(or:Order){
+    let max =this.getAvailableQuantity(or.product_id!);
     const ref =this.dialog.open(QuantityModalComponent,{ data: {
       message:  or,
-      quantity: or.quantity
+      quantity: or.quantity,
+      maxquantity: or.quantity! + max
       }});
       const price = or.total!/ or.quantity!
       const sub = ref.componentInstance.onAdd.subscribe((data) => {

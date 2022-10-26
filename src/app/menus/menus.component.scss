@@ -1,0 +1,262 @@
+.topnav {
+    background-color: rgb(231, 224, 224);
+    overflow: hidden;
+    display: flex;
+    font-family: Nunito;
+    height: 60px;
+  }
+  .topnav a.split {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    background-color: #04AA6D;
+    font-family: Aboreto;
+  }
+  .center{
+    border: none;
+    margin: auto;
+    display: block;
+    //max-height: 40px;
+  }
+  .date-picker{
+    font-size: 30px;
+    background-color: transparent;
+    color: #04AA6D;
+    border: none;
+    margin: auto;
+    display: block;
+    font-family: Aboreto;
+  }
+  .date-input{
+    line-height: 20px;
+  }
+  .reservation-card{
+    max-width: 400px;
+    margin-top: 5px;
+    margin: 5px 5px 5px 0px;
+  }
+  .flex-container {
+    display:flex;
+    flex-wrap: wrap;
+  }
+.round-button{
+  margin: 0px 2px 0px 5px;
+  float: right;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+
+
+.topnav {
+    background-color: rgb(231, 224, 224);
+    overflow: hidden;
+    display: flex;
+    font-family: Nunito;
+  }
+  .topnav a.split {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    background-color: #04AA6D;
+    font-family: Aboreto;
+  } 
+  .topnav a.split-right {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    background-color: #04AA6D;
+    font-family: Aboreto;
+    right: 0;
+  } 
+  .categories {
+    background-color: #333;
+    overflow: hidden;
+    display: flex;
+    height: fit-content;
+    width: 100%;
+    font-family: Aboreto;
+  }
+  .table-header {
+    font-family: 'Roboto Serif', serif;;  
+    
+  }
+  
+ 
+
+  .categories a {
+    flex: 1 1 0px;
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: Aboreto;
+  }
+  .categories a:hover, .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .categories a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+  .date-picker{
+    font-size: 30px;
+    background-color: transparent;
+    color: #04AA6D;
+    border: none;
+    margin: auto;
+    display: block;
+    font-family: Aboreto;
+  }
+  .center-button{
+    margin: 0;
+    position: relative;
+    left: 50%;
+  }
+  .container, #menu-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width:100%;
+    height: fit-content;
+    background-color: #39eaa9e0;
+    align-items: stretch;
+    
+    
+  }
+  .flex-item{
+    flex:60px;
+    border: black solid;
+  }
+  .menu-item{
+    width: 9rem;
+    margin: 10px;
+    padding: 5px 10px;
+    height: 70px;
+    font-family: Nunito;
+    font-size: 17px;
+    text-align: center;
+   // line-height: 70px;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /*display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    border: black solid;
+    border-width: 50%;
+    margin: 1%;
+    border-radius: 12px;
+    background-color: #dfdfdf;
+    height: fit-content;
+    min-height: 65px;
+    padding: 0px 50px;
+    width: 4rem;
+    line-height: 17px;
+    font-family: Nunito;
+    align-content: center;
+    text-align: center;
+    text-align-last: center;*/
+    
+  }
+  .topnav-right {
+    float: right;
+    margin-bottom: -8px;
+    align-items: center;
+    
+    }
+    .topnav-right a.active:hover {
+      background-color: #ddd;
+      color: black;
+      }
+    
+    .topnav-right a.active {
+    background-color: #04AA6D;
+    color: white;
+    }    
+    .topnav-right a {
+      float: left;
+      height: 100%;
+      display: block;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+      font-family: Aboreto;
+
+      }
+  .receipt-headers{
+    font-family: 'Roboto Serif', serif;
+    font-weight: bold;
+    margin: 0;
+  }
+  .dotted-border {
+    border-bottom: dotted 2px;
+}
+
+  .restaurant-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .receipt-table{
+    align-items: center;
+  }
+  .receipt-details{
+    display: flex;
+    flex-direction: column;
+  }
+  .receipt-summary{
+    display: flex;
+    flex-direction: column;
+    margin-top:auto;
+    font-family: 'Roboto Serif', serif;
+  }
+  .summary-table{
+    align-items: end;
+  }
+  td{
+    text-align: center;
+  }
+  table.summary-table { 
+    text-align: right;
+}
+.right-row{
+  text-align: right;
+}
+.material-symbols-outlined:hover{
+  transform: scale(1.2);
+}
+.grow {
+  transition: all .2s ease-in-out;
+}
+/*tbody.summary-table td:nth-child(1) {
+    width: 277px;
+}
+
+tbody.summary-table td:nth-child(2) {
+    width: 75px;
+}
+
+tbody.summary-table td:nth-child(3) {
+    width: 25px;
+}*/
+  
+//size r
