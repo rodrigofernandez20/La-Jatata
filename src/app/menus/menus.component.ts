@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { map, switchMap, tap } from 'rxjs';
 import Swal from 'sweetalert2';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
+import { Comanda } from '../models/comanda.model';
 import { MenuItem } from '../models/menu-item.model';
 import { Menu } from '../models/menu.model';
 import { Product } from '../models/product.model';
@@ -44,6 +45,8 @@ export class MenusComponent implements OnInit {
   products_url = 'https://la-jatata.herokuapp.com/products'
   menu_url ='https://la-jatata.herokuapp.com/menu'
   reservations_url ='https://la-jatata.herokuapp.com/reservas'
+  comandas: Comanda[] = [];
+  comandas_url ='https://la-jatata.herokuapp.com/comandas/menu'
   modifyCalled = false;
 
   constructor(private snackBar: MatSnackBar,private  dialog:  MatDialog,public http: HttpClient) { 
@@ -53,8 +56,9 @@ export class MenusComponent implements OnInit {
   ngOnInit(): void {
     this.menu.products =[]
     this.getProducts();
+    this.getComandas();
     this.getMenu();
-    this.getReservations();
+    //this.getReservations();
    // this.fillReservated();
   }
     getReservations(){
@@ -103,7 +107,28 @@ export class MenusComponent implements OnInit {
   fillReservated(){
     for(let i =0;i<this.menu.products!.length;i++){
       this.menu.products![i].reservated= this.getReservated(this.menu.products![i].product_id!)
+      this.menu.products![i].delivered= this.getDelivered(this.menu.products![i].product_id!)
     }
+  }
+  getComandas(){
+    let url = this.comandas_url + '?date='+ this.date
+    this.http.get<Comanda[]>(url).subscribe(data =>{ 
+      this.comandas = Object.values(data);
+      console.log(this.comandas)
+      this.getReservations();
+      //this.fillReservated();
+    });
+  }
+  getDelivered(product_id:number){
+    let cantDelivered = 0;
+    for(let i =0;i<this.comandas.length;i++){
+      for(let j =0;j<this.comandas[i].products!.length;j++){
+        if(this.comandas[i].products![j].product_id === product_id && this.comandas[i].products![j].state === 'Entregado'){
+          cantDelivered+= this.comandas[i].products![j].quantity!
+        }
+      }
+    }
+    return cantDelivered;
   }
   getMenu(){
     this.date.setHours(0, 0, 0, 0);

@@ -56,8 +56,20 @@ export class ComandasComponent implements OnInit {
       this.comanda.products = [];
       
    }
-  sendAllComandas(){
+  deleteProductsFromCurrentComanda(){
+    for (let i=0;i<this.comanda.products!.length;i++){
+      this.reserva.products?.map(x => {
+        if(x.product_id ===this.comanda.products![i].product_id){
+          x.sentQuantity! -=this.comanda.products![i].quantity!
+          x.pendant! +=this.comanda.products![i].quantity!
+        }
+        //x.productType = "free"
+      })
+    }
     this.comanda.products! =[];
+  }
+  sendAllComandas(){
+    this.deleteProductsFromCurrentComanda()
     let orderComanda:ComandaOrder;
     for (let i =0;i<this.reserva.products!.length;i++){
       if(this.reserva.products![i].pendant!>0){
@@ -79,11 +91,14 @@ export class ComandasComponent implements OnInit {
     console.log(this.comanda)*/
   }
   allComandasSent(){
-    let total = 0;
-    for (let i =0;i<this.reserva.products!.length;i++){
-      total += this.reserva.products![i].pendant!;
+    if(this.reserva.products!=undefined){
+      let total = 0;
+      for (let i =0;i<this.reserva.products!.length;i++){
+        total += this.reserva.products![i].pendant!;
+      }
+      return total ===0
     }
-    return total ===0
+    return false
   }
   ngOnInit(): void {
     this.subscription = this.reservation.reserve.subscribe(reserve => this.reserva = reserve);
@@ -162,22 +177,7 @@ export class ComandasComponent implements OnInit {
   comandaIsAble(){
     return this.comanda.products!.length >0
   }
-  /*checkOtherComandas(product_id?:number){
-    let sentQuantity =0;
-    if(this.previousComandas.length != 0){
-      for(let i =0;i<this.previousComandas.length;i++){
-        for(let j =0;j<this.previousComandas[i].products!.length;j++){
-          if(this.previousComandas[i].products![j].product_id === product_id){
-            sentQuantity += this.previousComandas[i].products![j].quantity!;
-          }
-        }
-      }
-    }
-    return sentQuantity;
-  }*/
-  //Thinkabout how to use this method to fill the other columns, Entregado y pendiente. 
-  // Maybe add this 3 numbers to each order in the reserva, but idk
-
+  
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
