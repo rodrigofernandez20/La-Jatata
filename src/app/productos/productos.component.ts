@@ -86,6 +86,7 @@ products_url = 'https://la-jatata.herokuapp.com/products'
     }
     else{
       url = this.products_url + '/filter?search='+ this.searchValue;
+      console.log(url)
       this.http.get<Product[]>(url).subscribe(data =>{ 
         this.products = Object.values(data);
         //this.allProducts = this.products;

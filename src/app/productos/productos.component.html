@@ -3,13 +3,12 @@
     <!--<a class="split" (click)="goToComandasPage()">Mandar Comanda</a>-->
     <mat-form-field appearance="fill">
         <mat-label>Buscar un producto</mat-label>
-        <input ng-change="changeSearchValue()"
+        <input (keyup.enter)="filterProducts(searchValue)" ng-change="changeSearchValue()"
           matInput
           [(ngModel)]="searchValue"
           placeholder="Buscar un producto"
         />
-        <mat-icon class='search-icon' color="primary" matPrefix (click)="filterProducts(searchValue)"
-          >search</mat-icon
+        <mat-icon class='search-icon' color="primary" matPrefix (click)="filterProducts(searchValue)">search</mat-icon
         >
       </mat-form-field>
     <a (click)="openDialog()" class="split">Nuevo</a> 

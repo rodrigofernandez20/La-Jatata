@@ -8,7 +8,12 @@
     left: 0;
     right: 0;
   } 
-  
+  .topnav-right {
+    float: right;
+    
+    align-items: center;
+    height: 100%;
+    }
   .example-is-mobile .example-toolbar {
     position: fixed;
     /* Make sure the toolbar will stay on top of the content as it scrolls past. */
@@ -56,4 +61,24 @@
       background-color: #08fe8fbe;
       color: white;
       }
-    
+        .example-toolbar a:hover {
+          background-color: #ddd;
+          color: black;
+          }
+          .example-toolbar a.active1:hover {
+            background-color: #ddd;
+            color: black;
+            }
+          .example-toolbar a.active:hover {
+            background-color: #ddd;
+            color: black;
+            }
+          
+          .example-toolbar a.active {
+          background-color: #04AA6D;
+          color: white;
+          }
+          .example-toolbar a.active1 {
+            background-color: #08fe8fbe;
+            color: white;
+            }

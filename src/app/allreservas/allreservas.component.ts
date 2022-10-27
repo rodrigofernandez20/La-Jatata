@@ -20,6 +20,7 @@ export class AllreservasComponent implements OnInit {
   //url ='http://localhost:3000/reservas'
   url = 'https://la-jatata.herokuapp.com/reservas'
   subscription: Subscription = new Subscription;
+  searchValue = '';
 
   constructor(route:ActivatedRoute,public http: HttpClient,private  dialog:  MatDialog,private reservation:ReservationService,private  router:  Router) {
     route.params.subscribe(val => {
@@ -28,6 +29,26 @@ export class AllreservasComponent implements OnInit {
     //this.router.onSameUrlNavigation='reload'
     //this.getReservas();
    }
+   filterReservations(){
+    let url;
+    if(this.searchValue ===''){
+      this.getReservas();
+    }
+    else{
+      url = this.url + '/filter?search='+ this.searchValue +'&date='+this.date;
+      this.http.get<Reserva[]>(url).subscribe(data =>{ 
+        this.reservations = Object.values(data);
+        //this.allProducts = this.products;
+        console.log(this.reservations);
+      });
+    }
+  }
+  showSearchBar(){
+    document.getElementById('mini-topnav')!.style.display='flex'
+  }
+  closeSearchBar(){
+    document.getElementById('mini-topnav')!.style.display='none'
+  }
    getReservas(){
     this.date.setHours(0, 0, 0, 0)
     let dateurl = this.url + '?date=' + this.date.toISOString()

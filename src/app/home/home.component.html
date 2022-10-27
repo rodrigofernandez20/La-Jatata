@@ -23,8 +23,8 @@
         </a>-->
   
         <div class="topnav-right">
-          <a class="active" href="/reservas">Reservas</a>
-          <a class="active1" (click)="showForm()" ><span class="material-symbols-outlined">
+          <a class="active">Reserva</a>
+          <a class="active1" (click)="showForm()"><span class="material-symbols-outlined">
             add
             </span></a>
           
@@ -32,6 +32,13 @@
       </div>
     </div>
   </div>
+  <mat-card class="reservations-card" *ngIf="reservationExists()">
+    <mat-card-title class="center-mat"><strong>Reservaciones para hoy</strong></mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <h1 class="center-mat"> <strong>{{reservations.length  }}</strong></h1>
+    </mat-card-content>
+  </mat-card>
   <div *ngIf="menuExists()" class="card-container">
     <mat-card *ngFor="let item of menu.products">
       <mat-card-title class="center-mat"><strong>{{item.product_name}}</strong></mat-card-title>

@@ -1,11 +1,43 @@
 <body>
+    <div id="mini-topnav">
+      <mat-form-field class="phone-search" appearance="fill">
+        <mat-label>Buscar por nombre</mat-label>
+        <input type="search" (keyup.enter)="filterReservations()" ng-change="changeSearchValue()"
+          matInput
+          [(ngModel)]="searchValue"
+          placeholder="Buscar un producto"
+        />
+        <mat-icon class='search-icon' color="primary" matPrefix>search</mat-icon>
+      </mat-form-field>
+      <div class='close-icon-container'>
+        <button (click)="closeSearchBar()" style="display:inline-block" color="primary" mat-mini-fab>
+          <mat-icon>close</mat-icon>
+      </button>
+      </div>
+    </div>
     <div class="topnav">
       <!--<a class="split" (click)="goToComandasPage()">Mandar Comanda</a>-->
-      <mat-form-field  class="date-input full-width center" appearance="fill">
+      <mat-form-field class="date-input full-width center" appearance="fill">
         <input (dateChange)="dateChanged('change', $event)" class="date-picker" [(ngModel)]='date' matInput [matDatepicker]="picker">
         <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
+      <div class="form-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Buscar por nombre</mat-label>
+          <input (keyup.enter)="filterReservations()" ng-change="changeSearchValue()"
+            matInput
+            [(ngModel)]="searchValue"
+            placeholder="Buscar un producto"
+          />
+          <mat-icon class='search-icon' color="primary" matPrefix>search</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="button-container">
+        <button (click)="showSearchBar()" style="display:inline-block" color="primary" mat-mini-fab>
+            <mat-icon>search</mat-icon>
+        </button>
+      </div>
         <!--<input (change)="dateChanged()"[(ngModel)]='date' class="date-picker" type="date"> -->
         <!--<a class="split">Guardar</a>-->
     </div>

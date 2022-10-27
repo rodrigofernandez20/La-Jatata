@@ -48,6 +48,14 @@ export class HomeComponent implements OnInit {
     return this.menu != undefined
     //console.log(this.menu)
   }
+  reservationExists(){
+    return this.reservations.length>0;
+  }
+  isWeekend(){
+    var day= this.date.getDay()
+    return day ===6 || day ===0
+  }
+
   getReservations(){
     let url = this.reservations_url + '?date='+ this.date
     this.http.get<Reserva[]>(url).subscribe(data =>{ 
