@@ -28,12 +28,14 @@
         
       </mat-card-actions>
       <mat-divider inset></mat-divider>
-      <mat-card-content>  
+      <h3 *ngIf="notesExists(comanda)">Notas: </h3>
+      <p>{{comanda.notes}}</p>
+      <!--<mat-card-content>  
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Notas (Opcional)</mat-label>
           <textarea readonly matInput  [(ngModel)]="comanda.notes"></textarea>
         </mat-form-field>
-      </mat-card-content>
+      </mat-card-content>-->
       
       </mat-card> 
   </div> 

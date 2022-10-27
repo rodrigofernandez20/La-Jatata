@@ -42,6 +42,9 @@ export class AllreservasComponent implements OnInit {
       console.log(this.reservations);
     });*/
   }
+  notaExists(res:Reserva){
+    return res.notas!= ""
+  }
   goToComandasPage(res:Reserva){
     /*console.log(this.reserve);
     this.sentOrder.setOrder(this.order);

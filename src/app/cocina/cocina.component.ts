@@ -54,6 +54,9 @@ export class CocinaComponent implements OnInit {
       this.isComandaBeingCalled = value;
   });
   }
+  notesExists(comanda:Comanda){
+    return comanda.notes!= undefined;
+  }
   /*subscribeToTopic(){
     getMessaging().subscribeToTopic("token", "topic")
   .then((response) => {
