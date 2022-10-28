@@ -40,13 +40,13 @@ export class WaitersComponent implements OnInit {
       }
     }
     else if(this.selectedWaiter === "Todos"){
-      apiurl = this.reservations_url + "/zones?date=" + this.date.toISOString() + "&zone=" + this.selectedZone;
+      apiurl = this.reservations_url + "/zones?date=" + this.date/*.toISOString()*/ + "&zone=" + this.selectedZone;
     }
     else if(this.selectedZone === "Todos"){
-      apiurl = this.reservations_url + "/zones?date=" + this.date.toISOString() + "&waiter=" + this.selectedWaiter;
+      apiurl = this.reservations_url + "/zones?date=" + this.date/*.toISOString()*/ + "&waiter=" + this.selectedWaiter;
     }
     else if(this.selectedWaiter != "Todos" && this.selectedZone != "Todos"){
-      apiurl = this.reservations_url + "/zones?date=" + this.date.toISOString() + "&zone=" + this.selectedZone + "&waiter=" + this.selectedWaiter;
+      apiurl = this.reservations_url + "/zones?date=" + this.date/*.toISOString()*/ + "&zone=" + this.selectedZone + "&waiter=" + this.selectedWaiter;
     }
     //apiurl = this.reservations_url + "/" + "Sauce" + "/" +  this.date.toISOString();//'?date=' + this.date.toISOString() +"&zone=" + "Sauce" 
     console.log(apiurl)
