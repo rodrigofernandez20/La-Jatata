@@ -31,10 +31,10 @@ export class WaitersComponent implements OnInit {
     this.date.setHours(0, 0, 0, 0);
     let apiurl="";
     if(this.selectedWaiter === "Todos" && this.selectedZone === "Todos"){
-      apiurl = this.reservations_url + "?date=" +this.date.toISOString();
+      apiurl = this.reservations_url + "?date=" +this.date//.toISOString();
     }
     else if(this.selectedWaiter === "Sin Asignar"){
-      apiurl = this.reservations_url + "/zones?date=" + this.date.toISOString() + "&waiter=" ;
+      apiurl = this.reservations_url + "/zones?date=" + this.date/*.toISOString()*/ + "&waiter=" ;
       if(this.selectedZone != "Todos"){
         apiurl += "&zone=" + this.selectedZone;
       }

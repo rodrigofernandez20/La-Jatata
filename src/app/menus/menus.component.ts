@@ -132,7 +132,7 @@ export class MenusComponent implements OnInit {
   }
   getMenu(){
     this.date.setHours(0, 0, 0, 0);
-    let dateurl = this.menu_url + '?date=' + this.date.toISOString()
+    let dateurl = this.menu_url + '?date=' + this.date//.toISOString()
     console.log(dateurl)
     this.http.get<Menu[]>(dateurl).subscribe(data =>{ 
        if(Object.values(data).length !=0){  

@@ -161,7 +161,7 @@ export class CocinaComponent implements OnInit {
     let date = new Date();
     console.log(date);
     //date.setHours(0, 0, 0, 0)
-    let dateurl = this.comandas_url + '/date?date=' + date.toISOString()
+    let dateurl = this.comandas_url + '/date?date=' + date//.toISOString()
     console.log(dateurl)
     this.http.get<Comanda[]>(dateurl).subscribe(data =>{ 
       this.comandas = Object.values(data);

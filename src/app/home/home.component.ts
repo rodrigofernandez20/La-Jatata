@@ -100,7 +100,7 @@ export class HomeComponent implements OnInit {
   getMenu(){
     //let date:Date = new Date();
     //date.setHours(0, 0, 0, 0);
-    let dateurl = this.menu_url + '?date=' + this.date.toISOString()
+    let dateurl = this.menu_url + '?date=' + this.date//.toISOString()
     console.log(dateurl)
     this.http.get<Menu[]>(dateurl).subscribe(data =>{ 
         this.menu = data[0];
