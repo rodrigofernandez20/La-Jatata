@@ -82,11 +82,11 @@ export class WaitersComponent implements OnInit {
     return res.waiterName != "";
   }
   assignWaiter(res:Reserva,mesero:String){
-    const ref =this.dialog.open(ConfirmModalComponent,{ data: {
+    /*const ref =this.dialog.open(ConfirmModalComponent,{ data: {
       message:  '¿Está seguro de asignar a ' + mesero + " a la reserva de " + res.clientName //or
     }});
     ref.afterClosed().subscribe((confirmed: boolean) => {
-      if (confirmed) {
+      if (confirmed) {*/
         const patch_url = this.reservations_url + '/' + res._id;
         const waiter = {'waiterName': mesero}
         console.log(patch_url)
@@ -94,8 +94,8 @@ export class WaitersComponent implements OnInit {
         this.http.patch(patch_url,waiter)
         .subscribe(() => this.getReservas());
         this.snackBar.open('La reserva fue asignada a ' + mesero,"Cerrar");
-      }
-    });
+    //  }
+    //});
   }
 //patch http typescript?
   patchReservation(url:string,waiter:String){

@@ -51,7 +51,7 @@ export class AllreservasComponent implements OnInit {
   }
    getReservas(){
     this.date.setHours(0, 0, 0, 0)
-    let dateurl = this.url + '?date=' + this.date//.toISOString()
+    let dateurl = this.url + '/notPaid?date=' + this.date//.toISOString()
     console.log(dateurl)
     this.http.get<Reserva[]>(dateurl).subscribe(data =>{ 
       this.reservations = Object.values(data);

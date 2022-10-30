@@ -41,11 +41,11 @@ export class PaymentModalComponent implements OnInit {
           'Content-Type':  'application/json'
       })
     };
-    const delete_url = this.reservas_url + "/" + this.reservation._id
+    const patchUrl = this.reservas_url + "/venta/" + this.reservation._id
     this.http.post(this.ventas_url, JSON.stringify(this.venta), httpOptions)
           .subscribe(data => console.log(data));
-    this.http.delete(delete_url).subscribe(data => console.log(data));
-    console.log(delete_url)
+    this.http.patch(patchUrl,'1').subscribe(data => console.log(data));
+    console.log(patchUrl)
     this.dialogRef.close(true);
     }
 
