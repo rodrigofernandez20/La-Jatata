@@ -23,7 +23,7 @@ export class NewproductModalComponent implements OnInit {
   products_url ='https://la-jatata.herokuapp.com/products'
   isSubmitted = false;
   categories = ['PLATOS', 'BEBIDAS',
-            'BEBIDAS ALCOHOLICAS','LACTEOS'];
+            'BEBIDAS ALCOHOLICAS','LACTEOS','OTROS'];
   days = ['SABADO', 'DOMINGO',
             'AMBOS'];
   _id :Number = 0;

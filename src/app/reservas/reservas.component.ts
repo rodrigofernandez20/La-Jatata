@@ -42,6 +42,10 @@ export class ReservasComponent implements OnInit {
   {
     'name':'LACTEOS',
     'active':false
+  },
+  {
+    'name':'OTROS',
+    'active':false
   }
 ]
   //reservation: Reserva ={};

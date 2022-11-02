@@ -70,16 +70,16 @@ export class CocinaComponent implements OnInit {
   }*/
   getAllTokens(currentToken:string){
     console.log(currentToken)
-    /*this.http.get<TokenModel[]>("http://localhost:3000/tokens").subscribe(data =>{ 
+    this.http.get<TokenModel[]>("https://la-jatata.herokuapp.com/tokens").subscribe(data =>{ 
       const allItems = Object.values(data);
       for(let i =0; i<allItems.length;i++){
         this.tokens.push(allItems[i].token!)
       }
       if(this.tokens.indexOf(currentToken) ===-1){
         this.postCurrentToken(currentToken)
-       }
+      }
       console.log(this.tokens);
-    });*/
+    });
   }
   postCurrentToken(currentToken:string){
     const httpOptions = {
@@ -87,7 +87,7 @@ export class CocinaComponent implements OnInit {
           'Content-Type':  'application/json'
       })
     };
-    const httpOptionsForFirebase = {
+    /*const httpOptionsForFirebase = {
       headers: new HttpHeaders({
           'Content-Type':  'application/json',
           'Access-Control-Allow-Origin': '*',
@@ -97,23 +97,23 @@ export class CocinaComponent implements OnInit {
           'Authorization': 'key=AAAAQ3zNzwQ:APA91bHcMyyjgDskJcFPoSWs3-JBaMnbDFTLKGvmqODYChceIsJKDflQH_1M362LHE6euTwJyt5var8lWcwR0uvlx6K40GQZI5E1Zh9Ttcoz29ll02byuEltM4sedPOEF0OHq1HJeyfZ',
           'project_id': '289856671492'
       })
-    };
+    };*/
     const sentToken = {
       'token':currentToken
     }
-    const firebaseGroup ={
+    /*const firebaseGroup ={
       "operation": "add",
       "notification_key_name": "comanda",
       "notification_key": "APA91bGy4YghJ6n0SMNfiidhBaYzGnDLfj66kyBN_5_xPV4BY9Ad_Ndys2NvZ-Km8meJBnz7uLBxruW9cDNC2nKlQALjNcUHGpSK7L73XiqzISSZ_n266Is",
       "registration_ids": [currentToken]
-    }
+    }*/
     console.log(JSON.stringify(sentToken))
     this.tokens.push(currentToken);
     //CORS TROUBLE, LEARN HOW TO FIX
     //this.http.post("https://fcm.googleapis.com/fcm/notification", JSON.stringify(firebaseGroup), httpOptionsForFirebase)
           //.subscribe(data => console.log(data));
-    //this.http.post("http://localhost:3000/tokens", JSON.stringify(sentToken), httpOptions)
-          //.subscribe(data => console.log(data));
+    this.http.post("https://la-jatata.herokuapp.com/tokens", JSON.stringify(sentToken), httpOptions)
+          .subscribe(data => console.log(data));
     
   }
   requestPermission() {

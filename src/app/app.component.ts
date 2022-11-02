@@ -11,6 +11,7 @@ import { environment } from "../environments/environment";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import { MediaMatcher } from '@angular/cdk/layout';
 import { NavItem } from './nav-item';
+import { ReservaModalComponent } from './reserva-modal/reserva-modal.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -90,10 +91,13 @@ export class AppComponent {
   message:any = null;
   private _mobileQueryListener: () => void;
   
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private  dialog:  MatDialog) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+  }
+  showForm(){
+    const ref =this.dialog.open(ReservaModalComponent)
   }
   changeTitle(title:string){
     this.header = title;

@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+*{
+  font-family: Montserrat;
+}
+
+/* Add a black background color to the top navigation */
+.example-toolbar {
+  background-color: #dfdfdf;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.example-toolbar a {
+float: left;
+display: block;
+color: #f2f2f2;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 17px;
+font-family: Aboreto;
+}
+.new-reserve{
+  display: inline-block;
+}
+
+
+.example-toolbar a:hover {
+background-color: #ddd;
+color: black;
+}
+.example-toolbar a.active1:hover {
+  background-color: #ddd;
+  color: black;
+  }
+/*.example-toolbar a.active:hover {
+  background-color: #ddd;
+  color: black;
+  }*/
+.example-toolbar a.active {
+background-color: #08fe8fbe;
+color: white;
+}
+.example-toolbar a.active1 {
+  background-color: #08fe8fbe;
+  color: white;
+  }
+
+/* Right-aligned section inside the top navigation */
+.topnav-right {
+float: right;
+margin-bottom: -8px;
+align-items: center;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */

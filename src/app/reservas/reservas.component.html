@@ -102,11 +102,11 @@
   
         <div id="menu-container" class="flex-item">
           <div class="categories">
-            <a *ngFor="let cat of categories" [ngClass]="{'active': cat.active}" (click)="changeCategory(cat)">{{cat.name}}</a>
+            <a class="item" *ngFor="let cat of categories" [ngClass]="{'active': cat.active}" (click)="changeCategory(cat)">{{cat.name}}</a>
             <!--<a class="active" (click)="changeCategory()">Platos</a>
             <a (click)="changeCategory()">Bebidas</a>
             <a (click)="changeCategory()">Tragos</a>
-            <a (click)="changeCategory()">Lacteos</a>-->
+            <a (click)="changeCategory()">Lacteos</a>--> 
           </div>
           <mat-card [ngStyle]="{'background-color':getColor(pro._id!)}" class="menu-item" *ngFor="let pro of products" (click)="openDialog(pro)">
             {{pro.name}}

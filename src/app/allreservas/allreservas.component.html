@@ -57,7 +57,7 @@
                     </mat-panel-description>
                   </mat-expansion-panel-header>
                   <ul>
-                    <li *ngFor="let pro of res.products">{{pro.quantity}} {{pro.product_name}}</li>
+                    <li class="descr-pro" *ngFor="let pro of res.products">{{pro.quantity}} {{pro.product_name}}</li>
                   </ul>  
                   <button mat-raised-button color="primary" (click)="goToComandasPage(res)">Comanda</button>
                 </mat-expansion-panel>

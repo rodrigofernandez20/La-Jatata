@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,200&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 
 .topnav {
@@ -39,6 +40,11 @@
     width: 100%;
     font-family: Aboreto;
   }
+  .item {
+    flex: 1 1 0;
+    width: 0;
+  }
+  
   .table-header {
     font-family: 'Roboto Serif', serif;;  
     
@@ -185,4 +191,16 @@ tbody.summary-table td:nth-child(3) {
     width: 25px;
 }*/
   
+table {
+  color: #333;
+  font-family: Montserrat;
+  font-weight: 800;
+}
 //size r
+@media screen and (max-width: 600px) {
+  .categories a{
+    font-size: 13px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

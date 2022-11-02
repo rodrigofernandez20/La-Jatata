@@ -1,0 +1,78 @@
+<div class="container">
+    <div>
+        <mat-form-field style="width: 100%;" appearance="fill" class="full-width">
+            <mat-label>Categoria</mat-label>
+            <mat-select [(ngModel)]="category" (ngModelChange)="getProducts()">
+              <mat-option *ngFor="let cat of categories" [value]="cat">{{cat}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        <br>
+        <div>
+            <mat-form-field style="margin-right: 20px;" appearance="fill" class="full-width">
+                <mat-label>Producto</mat-label>
+                <mat-select [(ngModel)]="product">
+                  <mat-option *ngFor="let pro of products" [value]="pro">{{pro.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Cantidad</mat-label>
+                <input  matInput  [(ngModel)]="quantity">
+              </mat-form-field>
+              <br>
+              <button (click)="addToOrder()" [disabled]="notReady()" style="width: 100%;" mat-raised-button color="primary" class="margin">Añadir</button>
+              
+        </div>
+        <br>
+        <table class="cinereousTable">
+            <thead>
+            <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let or of venta.products">
+            <td>{{or.product_name}}</td>
+            <td>{{or.quantity}}</td>
+            <td>{{or.total}}</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td></td>
+                <td>Total:</td>
+                <td>{{venta.total}} Bs</td>
+            </tr>
+            </tfoot>
+            </table>
+        <br>
+        <!--<div class="form-group">
+          <label for="cantidad-personas">Cantidad de Personas</label>
+          <input type="text" class="form-control" id="alterEgo">
+        </div>-->
+        <br>
+        <!--<div class="fechaylugar"> -->
+          
+          <br>
+          <br>
+        <br>
+        
+
+        <button (click)="postVenta()" [disabled]="isEmpty()" mat-raised-button color="primary" class="margin">Guardar</button>
+        <!--<button (click)="onSubmit(form)" *ngIf="!modifyDataExists()" mat-raised-button color="accent">Reservar Platos</button>-->
+        
+        <button (click)="closePopup()" mat-raised-button color="accent">Cancelar</button>
+        <!--<button type="submit" class="guardar" [disabled]="!heroForm.form.valid">Guardar</button>
+        <button type="button" class="reservar" >Reservar Platos</button>
+        -->
+        
+       <!--<div class="notas">
+        <label for="notas">Notas</label>
+        <input type="text" class="notas-input" id="alterEgo">
+      </div>-->
+  
+      
+    </div>
+  
+    

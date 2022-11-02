@@ -8,6 +8,7 @@ import { ProductosComponent } from './productos/productos.component';
 import { WaitersComponent } from './waiters/waiters.component';
 import { CocinaComponent } from './cocina/cocina.component';
 import { MenusComponent } from './menus/menus.component';
+import { VentasComponent } from './ventas/ventas.component';
 
 const routes: Routes = [
   {path: '',
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path:'productos',component:ProductosComponent},
   {path:'waiters',component:WaitersComponent},
   {path:'cocina',component:CocinaComponent},
-  {path:'menu',component:MenusComponent}
+  {path:'menu',component:MenusComponent},
+  {path:'ventas',component:VentasComponent}
 ];
 
 @NgModule({

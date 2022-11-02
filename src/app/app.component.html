@@ -1,17 +1,28 @@
 <div
   class="example-container"
   [class.example-is-mobile]="mobileQuery.matches">
-
-<mat-toolbar color="primary" class="example-toolbar">
+  <div style="text-align: left">
+    <div class="container">
+      <mat-toolbar color="primary" class="example-toolbar" id="myTopnav">
+        <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+        <h1 class="example-app-name">{{header}}</h1> 
+        <div class="topnav-right">
+         
+          <a class="active1" (click)="showForm()"><mat-icon>add</mat-icon></a>
+        </div>
+      </mat-toolbar>
+    </div>
+  </div>
+<!--<mat-toolbar color="primary" class="example-toolbar">
   <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-  <h1 class="example-app-name">{{header}}</h1> 
-  <!--<div class="topnav-right">
-    <a class="active1">Reserva</a>
-    <a class="active1"><span class="material-symbols-outlined">
-      add
-      </span></a>
-  </div>-->
-</mat-toolbar>
+    <h1 class="example-app-name">{{header}}</h1> 
+    <div class="topnav-right">
+      <a class="active1">Reserva</a>
+      <a class="active1"><span class="material-symbols-outlined">
+        add
+        </span></a>
+    </div>
+</mat-toolbar>-->
 
 <mat-sidenav-container class="example-sidenav-container"
                        [style.marginTop.px]="mobileQuery.matches ? 56 : 0">

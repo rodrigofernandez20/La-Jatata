@@ -29,6 +29,10 @@ export class ProductosComponent implements OnInit {
   {
     'name':'LACTEOS',
     'active':false
+  },
+  {
+    'name':'OTROS',
+    'active':false
   }
 ]
 products: Product[] = [];

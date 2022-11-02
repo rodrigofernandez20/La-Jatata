@@ -49,6 +49,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { MenusComponent } from './menus/menus.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { VentaModalComponent } from './venta-modal/venta-modal.component';
+import { VentasComponent } from './ventas/ventas.component';
 
 
 initializeApp(environment.firebase);
@@ -69,7 +71,9 @@ initializeApp(environment.firebase);
     ReciboModalComponent,
     PaymentModalComponent,
     CocinaComponent,
-    MenusComponent
+    MenusComponent,
+    VentaModalComponent,
+    VentasComponent
   ],
   imports: [
     BrowserModule,

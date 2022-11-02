@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 .topnav {
     background-color: rgb(231, 224, 224);
     overflow: hidden;
@@ -71,6 +72,11 @@
 }
 .close-icon{
   transform: scale(1.5);
+}
+.descr-pro{
+  color: #f2f2f2;
+  font-family: Montserrat;
+  font-weight: 800;
 }
 @media screen and (max-width: 600px) {
   .button-container{
